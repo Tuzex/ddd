@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\DateTime;
+namespace Tuzex\Ddd\Domain\DateTime\Duration;
 
 final class Weeks
 {
