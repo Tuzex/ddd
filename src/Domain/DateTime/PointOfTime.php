@@ -17,42 +17,42 @@ final class PointOfTime
         return new self(new Seconds($instant));
     }
 
-    public function equals(PointOfTime $that): bool
+    public function equals(self $that): bool
     {
         return 0 === $this->compareTo($that);
     }
 
-    public function isLaterThan(PointOfTime $that): bool
+    public function isLaterThan(self $that): bool
     {
         return 0 < $this->compareTo($that);
     }
 
-    public function isLateOrEqualThan(PointOfTime $that): bool
+    public function isLateOrEqualThan(self $that): bool
     {
         return 0 <= $this->compareTo($that);
     }
 
-    public function isEarlierThan(PointOfTime $that): bool
+    public function isEarlierThan(self $that): bool
     {
         return 0 > $this->compareTo($that);
     }
 
-    public function isEarlierOrEqualThan(PointOfTime $that): bool
+    public function isEarlierOrEqualThan(self $that): bool
     {
         return 0 >= $this->compareTo($that);
     }
 
-    public function isBetweenInclusive(PointOfTime $from, PointOfTime $to): bool
+    public function isBetweenInclusive(self $from, self $to): bool
     {
         return $this->isLateOrEqualThan($from) && $this->isEarlierOrEqualThan($to);
     }
 
-    public function isBetweenExclusive(PointOfTime $from, PointOfTime $to): bool
+    public function isBetweenExclusive(self $from, self $to): bool
     {
         return $this->isLaterThan($from) && $this->isEarlierThan($to);
     }
 
-    private function compareTo(PointOfTime $that): int
+    private function compareTo(self $that): int
     {
         return $this->seconds <=> $that->seconds;
     }

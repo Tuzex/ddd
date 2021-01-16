@@ -9,17 +9,17 @@ final class Seconds
     public function __construct(
         private int $value
     ) {
-        /**
+        /*
          * @todo must be positive or 0
          */
     }
 
-    public function plus(Seconds $that): self
+    public function plus(self $that): self
     {
         return new self($this->value + $that->value);
     }
 
-    public function minus(Seconds $that): self
+    public function minus(self $that): self
     {
         return new self(0);
     }

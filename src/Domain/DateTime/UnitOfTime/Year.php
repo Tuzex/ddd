@@ -6,5 +6,4 @@ namespace Tuzex\Ddd\Domain\Domain\DateTime;
 
 final class Year
 {
-
 }

@@ -6,5 +6,4 @@ namespace Tuzex\Ddd\Domain\DateTime\UnitOfTime;
 
 final class Week
 {
-
 }

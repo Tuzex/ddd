@@ -10,4 +10,3 @@ interface TimeZone
 
     public function offset(): int;
 }
-
