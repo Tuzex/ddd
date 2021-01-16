@@ -18,10 +18,6 @@ final class DomainEvents
      */
     public static function release(): array
     {
-        $clock = new SystemClock();
-
-        PublishDateTime::byClock($clock);
-
         $domainEvents = self::$domainEvents;
         self::$domainEvents = [];
 
