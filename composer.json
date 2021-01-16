@@ -1,0 +1,38 @@
+{
+  "name": "tuzex/ddd",
+  "description": "A lightweight library for DDD (Domain Driven Design) project in PHP",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Edo Barnas",
+      "email": "iam@edobarnas.com"
+    }
+  ],
+  "config": {
+    "platform": {
+      "php": "8.0.1"
+    },
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Tuzex\\Ddd\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tuzex\\Ddd\\Test\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "8.*",
+    "symfony/messenger": "4.3.*|4.4.*|5.*"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "0.12.*",
+    "phpstan/phpstan-phpunit": "0.12.*",
+    "phpunit/phpunit": "9.5.*",
+    "symplify/easy-coding-standard": "9.0.*"
+  }
+}
