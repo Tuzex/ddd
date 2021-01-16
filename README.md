@@ -1,4 +1,5 @@
 # Tuzex / ddd
+[![Coverage Status](https://coveralls.io/repos/github/Tuzex/ddd/badge.svg?branch=master)](https://coveralls.io/github/Tuzex/ddd?branch=master)
 
 A lightweight library for DDD (Domain Driven Design) project in PHP.
 
