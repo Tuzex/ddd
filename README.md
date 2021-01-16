@@ -1,5 +1,4 @@
 # Tuzex / ddd
-[![Build Status](https://travis-ci.org/Tuzex/ddd.svg?branch=master)](https://travis-ci.org/Tuzex/ddd)
 
 A lightweight library for DDD (Domain Driven Design) project in PHP.
 
