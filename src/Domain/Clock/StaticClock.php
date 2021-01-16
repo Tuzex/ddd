@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tuzex\Ddd\Domain\Clock;
 
 use DateTimeImmutable;
-use InvalidArgumentException;
+use Tuzex\Ddd\Domain\Clock\Exception\InvalidDateTimeStatement;
 use Tuzex\Ddd\Domain\DateTime\PointOfTime;
 
 final class StaticClock implements Clock
@@ -18,7 +18,7 @@ final class StaticClock implements Clock
     {
         $dateTime = DateTimeImmutable::createFromFormat($statement, $format);
         if (!$dateTime) {
-            throw new InvalidArgumentException($statement, $format);
+            throw new InvalidDateTimeStatement($statement, $format);
         }
 
         return new self($dateTime);

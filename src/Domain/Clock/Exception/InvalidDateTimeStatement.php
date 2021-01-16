@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\Clock;
+namespace Tuzex\Ddd\Domain\Clock\Exception;
 
 use DomainException;
 
