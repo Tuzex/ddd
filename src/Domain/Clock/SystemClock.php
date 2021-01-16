@@ -1,0 +1,15 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tuzex\Ddd\Domain\Clock;
+
+use Tuzex\Ddd\Domain\DateTime\PointOfTime;
+
+final class SystemClock implements Clock
+{
+    public function measure(): PointOfTime
+    {
+        return PointOfTime::set(time());
+    }
+}

@@ -1,0 +1,15 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Tuzex\Ddd\Domain\Clock;
+
+use DomainException;
+
+final class InvalidDateTimeStatement extends DomainException
+{
+    public function __construct(string $statement, string $format)
+    {
+        parent::__construct(sprintf('DateTime statement "%s" does not match format "%s"', $statement, $format));
+    }
+}
