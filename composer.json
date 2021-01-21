@@ -27,7 +27,9 @@
   },
   "require": {
     "php": "8.*",
-    "symfony/messenger": "4.3.*|4.4.*|5.*"
+    "doctrine/dbal": "3.*",
+    "symfony/messenger": "4.3.*|4.4.*|5.*",
+    "webmozart/assert": "1.9.*"
   },
   "require-dev": {
     "phpstan/phpstan": "0.12.*",

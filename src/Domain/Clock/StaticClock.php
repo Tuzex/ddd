@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Tuzex\Ddd\Domain\Clock;
 
 use DateTimeImmutable;
-use Tuzex\Ddd\Domain\Clock\Exception\InvalidDateTimeStatement;
-use Tuzex\Ddd\Domain\DateTime\PointOfTime;
+use DateTimeZone;
+use Tuzex\Ddd\Domain\Clock\Exception\DateTimeStatementIsNotValid;
+use Tuzex\Ddd\Domain\DateTime\Instant;
 
 final class StaticClock implements Clock
 {
@@ -16,16 +17,16 @@ final class StaticClock implements Clock
 
     public static function determine(string $statement, string $format = DateTimeImmutable::ISO8601): self
     {
-        $dateTime = DateTimeImmutable::createFromFormat($statement, $format);
+        $dateTime = DateTimeImmutable::createFromFormat($format, $statement, new DateTimeZone('UTC'));
         if (!$dateTime) {
-            throw new InvalidDateTimeStatement($statement, $format);
+            throw new DateTimeStatementIsNotValid($statement, $format);
         }
 
         return new self($dateTime);
     }
 
-    public function measure(): PointOfTime
+    public function measure(): Instant
     {
-        return PointOfTime::set($this->dateTime->getTimestamp());
+        return Instant::of($this->dateTime->getTimestamp());
     }
 }

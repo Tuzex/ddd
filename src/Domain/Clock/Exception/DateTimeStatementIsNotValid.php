@@ -6,7 +6,7 @@ namespace Tuzex\Ddd\Domain\Clock\Exception;
 
 use DomainException;
 
-final class InvalidDateTimeStatement extends DomainException
+final class DateTimeStatementIsNotValid extends DomainException
 {
     public function __construct(string $statement, string $format)
     {
