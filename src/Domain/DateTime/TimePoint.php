@@ -8,7 +8,7 @@ use Tuzex\Ddd\Domain\Clock\Clock;
 
 abstract class TimePoint
 {
-    private function __construct(
+    final private function __construct(
         private Instant $instant,
     ) {}
 

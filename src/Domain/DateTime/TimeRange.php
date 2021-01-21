@@ -6,7 +6,7 @@ namespace Tuzex\Ddd\Domain\DateTime;
 
 abstract class TimeRange
 {
-    private function __construct(
+    final private function __construct(
         private Interval $interval
     ) {}
 
