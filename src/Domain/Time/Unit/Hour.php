@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\DateTime\Unit;
+namespace Tuzex\Ddd\Domain\Time\Unit;
 
 use Webmozart\Assert\Assert;
 
 final class Hour
 {
-    public const MINUTES_PER_HOUR = 60;
     public const SECONDS_PER_HOUR = 3600;
+    public const MINUTES_PER_HOUR = 60;
 
     public function __construct(
         private int $value

@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\DateTime\Period;
+namespace Tuzex\Ddd\Domain\Time\Period;
 
-use Tuzex\Ddd\Domain\DateTime\Unit\Hour;
+use Tuzex\Ddd\Domain\Time\Period;
+use Tuzex\Ddd\Domain\Time\Unit\Hour;
 
 final class Hours extends Period
 {

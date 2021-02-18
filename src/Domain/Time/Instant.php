@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\DateTime;
+namespace Tuzex\Ddd\Domain\Time;
 
-use Tuzex\Ddd\Domain\DateTime\Period\Seconds;
+use Tuzex\Ddd\Domain\Time\Period\Seconds;
 
 final class Instant
 {
@@ -62,7 +62,7 @@ final class Instant
         return $this->seconds->decrease($that->seconds->absolute());
     }
 
-    public function seconds(): Seconds
+    public function stamp(): Seconds
     {
         return $this->seconds;
     }

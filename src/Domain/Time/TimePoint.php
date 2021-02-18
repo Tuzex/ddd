@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\DateTime;
+namespace Tuzex\Ddd\Domain\Time;
 
 use Tuzex\Ddd\Domain\Clock\Clock;
 
@@ -27,7 +27,12 @@ abstract class TimePoint
         return $this->instant->equals($that->instant);
     }
 
-    public function dateTime(): DateTime
+    public function instant(): Instant
+    {
+        return $this->instant;
+    }
+
+    protected function current(): DateTime
     {
         return DateTime::from($this->instant);
     }

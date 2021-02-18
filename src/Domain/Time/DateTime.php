@@ -2,26 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\DateTime;
+namespace Tuzex\Ddd\Domain\Time;
 
 use DateTimeImmutable;
 use DateTimeZone;
-use Tuzex\Ddd\Domain\DateTime\Format\Iso8601DateTimeFormat;
-use Tuzex\Ddd\Domain\DateTime\Unit\Day;
-use Tuzex\Ddd\Domain\DateTime\Unit\DayOfWeek;
-use Tuzex\Ddd\Domain\DateTime\Unit\Epoch;
-use Tuzex\Ddd\Domain\DateTime\Unit\Hour;
-use Tuzex\Ddd\Domain\DateTime\Unit\Minute;
-use Tuzex\Ddd\Domain\DateTime\Unit\Month;
-use Tuzex\Ddd\Domain\DateTime\Unit\Second;
-use Tuzex\Ddd\Domain\DateTime\Unit\TimeOffset;
-use Tuzex\Ddd\Domain\DateTime\Unit\Week;
-use Tuzex\Ddd\Domain\DateTime\Unit\Year;
+use Tuzex\Ddd\Domain\Time\Unit\Day;
+use Tuzex\Ddd\Domain\Time\Unit\DayOfWeek;
+use Tuzex\Ddd\Domain\Time\Unit\Hour;
+use Tuzex\Ddd\Domain\Time\Unit\Minute;
+use Tuzex\Ddd\Domain\Time\Unit\Month;
+use Tuzex\Ddd\Domain\Time\Unit\Second;
+use Tuzex\Ddd\Domain\Time\Unit\TimeShift;
+use Tuzex\Ddd\Domain\Time\Unit\Week;
+use Tuzex\Ddd\Domain\Time\Unit\Year;
 
 final class DateTime
 {
     public function __construct(
-        private Epoch $epoch,
         private Year $year,
         private Month $month,
         private Week $week,
@@ -30,14 +27,13 @@ final class DateTime
         private Hour $hour,
         private Minute $minute,
         private Second $second,
-        private TimeOffset $timeOffset,
+        private TimeShift $timeShift,
     ) {}
 
     public static function from(Instant $instant): self
     {
-        $dateTime = new DateTimeImmutable('@'.$instant->seconds()->value(), new DateTimeZone('UTC'));
-        $transferMap = [
-            [Epoch::class, 'U'],
+        $dateTime = new DateTimeImmutable('@'.$instant->stamp()->value(), new DateTimeZone('UTC'));
+        $dateTimeUnits = [
             [Year::class, 'Y'],
             [Month::class, 'm'],
             [Week::class, 'W'],
@@ -46,17 +42,12 @@ final class DateTime
             [Hour::class, 'H'],
             [Minute::class, 'i'],
             [Second::class, 's'],
-            [TimeOffset::class, 'Z'],
+            [TimeShift::class, 'Z'],
         ];
 
         return new self(
-            ...array_map(fn (array $transfer) => new $transfer[0]((int) $dateTime->format($transfer[1])), $transferMap)
+            ...array_map(fn (array $unit) => new $unit[0]((int) $dateTime->format($unit[1])), $dateTimeUnits)
         );
-    }
-
-    public function instant(): Instant
-    {
-        return Instant::of($this->epoch->value());
     }
 
     public function year(): Year
@@ -99,13 +90,8 @@ final class DateTime
         return $this->second;
     }
 
-    public function timeOffset(): TimeOffset
+    public function timeShift(): TimeShift
     {
-        return $this->timeOffset;
-    }
-
-    public function iso8601Format(): Iso8601DateTimeFormat
-    {
-        return new Iso8601DateTimeFormat($this);
+        return $this->timeShift;
     }
 }

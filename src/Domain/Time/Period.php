@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\DateTime\Period;
+namespace Tuzex\Ddd\Domain\Time;
 
 abstract class Period
 {
@@ -22,12 +22,12 @@ abstract class Period
 
     public function negated(): static
     {
-        return new static(-abs($this->value));
+        return new static((int) -abs($this->value));
     }
 
     public function absolute(): static
     {
-        return new static(abs($this->value));
+        return new static((int) abs($this->value));
     }
 
     public function value(): int

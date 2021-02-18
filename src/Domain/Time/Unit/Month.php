@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\DateTime\Unit;
+namespace Tuzex\Ddd\Domain\Time\Unit;
 
 use Webmozart\Assert\Assert;
 
 final class Month
 {
+    public const SECONDS_PER_MONTH = 2629743;
+
     public function __construct(
         private int $value
     ) {

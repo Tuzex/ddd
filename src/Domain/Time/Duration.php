@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\DateTime;
+namespace Tuzex\Ddd\Domain\Time;
 
-use Tuzex\Ddd\Domain\DateTime\Period\Days;
-use Tuzex\Ddd\Domain\DateTime\Period\Hours;
-use Tuzex\Ddd\Domain\DateTime\Period\Minutes;
-use Tuzex\Ddd\Domain\DateTime\Period\Seconds;
+use Tuzex\Ddd\Domain\Time\Period\Days;
+use Tuzex\Ddd\Domain\Time\Period\Hours;
+use Tuzex\Ddd\Domain\Time\Period\Minutes;
+use Tuzex\Ddd\Domain\Time\Period\Seconds;
 
 final class Duration
 {

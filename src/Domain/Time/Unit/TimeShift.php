@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\DateTime\Unit;
+namespace Tuzex\Ddd\Domain\Time\Unit;
 
-final class TimeOffset
+final class TimeShift
 {
     public function __construct(
         private int $value

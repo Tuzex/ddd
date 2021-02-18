@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\DateTime\Unit;
+namespace Tuzex\Ddd\Domain\Time\Unit;
 
 use Webmozart\Assert\Assert;
 
 final class Week
 {
+    public const SECONDS_PER_WEEK = 604800;
     public const DAYS_PER_WEEK = 7;
 
     public function __construct(

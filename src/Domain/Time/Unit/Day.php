@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\DateTime\Unit;
+namespace Tuzex\Ddd\Domain\Time\Unit;
 
 use Webmozart\Assert\Assert;
 
 final class Day
 {
-    public const HOURS_PER_DAY = 24;
-    public const MINUTES_PER_DAY = 1440;
     public const SECONDS_PER_DAY = 86400;
+    public const MINUTES_PER_DAY = 1440;
+    public const HOURS_PER_DAY = 24;
 
     public function __construct(
         private int $value
