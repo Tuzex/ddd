@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Application\Handler\DomainEvent;
+namespace Tuzex\Ddd\Application\Service\DomainEvent;
 
 interface DomainEventHandler
 {
