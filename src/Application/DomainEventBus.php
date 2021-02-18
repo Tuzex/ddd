@@ -6,7 +6,7 @@ namespace Tuzex\Ddd\Application;
 
 use Tuzex\Ddd\Domain\DomainEvent;
 
-interface DomainEventDispatcher
+interface DomainEventBus
 {
-    public function dispatch(DomainEvent $domainEvent): void;
+    public function publish(DomainEvent $domainEvent): void;
 }
