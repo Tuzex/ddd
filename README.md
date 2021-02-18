@@ -1,5 +1,11 @@
 # Tuzex / ddd
-[![Coverage Status](https://coveralls.io/repos/github/Tuzex/ddd/badge.svg?branch=master)](https://coveralls.io/github/Tuzex/ddd?branch=master)
+
+[![PHP version](https://img.shields.io/packagist/php-v/tuzex/ddd?style=flat-square)](http://php.net)
+[![Latest Version](https://img.shields.io/packagist/v/tuzex/ddd?style=flat-square)](https://packagist.org/packages/tuzex/ddd)
+
+[![Build status](https://img.shields.io/github/workflow/status/tuzex/ddd/Tests?style=flat-square)](https://github.com/Tuzex/ddd/actions?query=workflow%3ATests)
+[![Code Quality](https://img.shields.io/scrutinizer/quality/g/tuzex/ddd?style=flat-square)](https://scrutinizer-ci.com/g/Tuzex/ddd/?branch=master)
+[![Coverage Status](https://img.shields.io/coveralls/github/Tuzex/ddd?style=flat-square)](https://coveralls.io/github/Tuzex/ddd?branch=master)
 
 A lightweight library for DDD (Domain Driven Design) project in PHP.
 
