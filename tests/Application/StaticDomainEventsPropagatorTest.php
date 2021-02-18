@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Test\Infrastructure\Application;
+namespace Tuzex\Ddd\Test\Application;
 
 use PHPUnit\Framework\TestCase;
-use Tuzex\Ddd\Application\DomainEventDispatcher;
+use Tuzex\Ddd\Application\DomainEventBus;
+use Tuzex\Ddd\Application\StaticDomainEventsPropagator;
 use Tuzex\Ddd\Domain\DomainEvent;
 use Tuzex\Ddd\Domain\DomainEvents;
-use Tuzex\Ddd\Infrastructure\Application\MemoryDomainEventsPublisher;
 
-final class MemoryDomainEventsPublisherTest extends TestCase
+final class StaticDomainEventsPropagatorTest extends TestCase
 {
     /**
      * @dataProvider provideDomainEvents
@@ -19,10 +19,10 @@ final class MemoryDomainEventsPublisherTest extends TestCase
     {
         DomainEvents::occur(...$domainEvents);
 
-        $dispatcher = $this->mockDispatcher($domainEvents);
+        $domainEventBus = $this->mockDomainEventBus($domainEvents);
 
-        $propagator = new MemoryDomainEventsPublisher($dispatcher);
-        $propagator->propagate();
+        $domainEventPropagator = new StaticDomainEventsPropagator($domainEventBus);
+        $domainEventPropagator->propagate();
     }
 
     public function provideDomainEvents(): iterable
@@ -36,14 +36,16 @@ final class MemoryDomainEventsPublisherTest extends TestCase
         }
     }
 
-    private function mockDispatcher(array $domainEvents): DomainEventDispatcher
+    private function mockDomainEventBus(array $domainEvents): DomainEventBus
     {
         $countOfDomainEvents = count($domainEvents);
 
-        $dispatcher = $this->createMock(DomainEventDispatcher::class);
+        $dispatcher = $this->createMock(DomainEventBus::class);
         $dispatcher->expects($this->exactly($countOfDomainEvents))
-            ->method('dispatch')
-            ->with($this->createMock(DomainEvent::class));
+            ->method('publish')
+            ->with(
+                $this->createMock(DomainEvent::class)
+            );
 
         return $dispatcher;
     }

@@ -8,16 +8,16 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Tuzex\Ddd\Domain\DomainEvent;
-use Tuzex\Ddd\Infrastructure\Application\MessengerDomainEventDispatcher;
+use Tuzex\Ddd\Infrastructure\Application\MessengerDomainEventBus;
 
-final class MessengerDomainEventDispatcherTest extends TestCase
+final class MessengerDomainEventBusTest extends TestCase
 {
-    public function testItDispatchesDomainEventToMessageBus(): void
+    public function testItPublishesDomainEventToMessageBus(): void
     {
         $domainEvent = $this->createMock(DomainEvent::class);
-        $domainEventDispatcher = new MessengerDomainEventDispatcher($this->mockMessageBus($domainEvent));
+        $domainEventBus = new MessengerDomainEventBus($this->mockMessageBus($domainEvent));
 
-        $domainEventDispatcher->dispatch($domainEvent);
+        $domainEventBus->publish($domainEvent);
     }
 
     private function mockMessageBus(DomainEvent $domainEvent): MessageBusInterface
@@ -26,7 +26,9 @@ final class MessengerDomainEventDispatcherTest extends TestCase
         $messageBus->expects($this->once())
             ->method('dispatch')
             ->with($domainEvent)
-            ->willReturn(new Envelope($domainEvent));
+            ->willReturn(
+                new Envelope($domainEvent)
+            );
 
         return $messageBus;
     }
