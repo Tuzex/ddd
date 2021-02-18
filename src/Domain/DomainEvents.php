@@ -13,9 +13,6 @@ final class DomainEvents
         self::$domainEvents = array_merge(self::$domainEvents, $domainEvents);
     }
 
-    /**
-     * @return DomainEvent[]
-     */
     public static function release(): array
     {
         $domainEvents = self::$domainEvents;
