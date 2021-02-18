@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tuzex\Ddd\Application;
 
-interface DomainEventsPublisher
+interface DomainEventsPropagator
 {
     public function propagate(): void;
 }
