@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Type;
+namespace Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Orm\Type;
 
+use DateTimeImmutable;
 use DateTimeInterface;
+use DateTimeZone;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\DateTimeTzImmutableType;
-use Tuzex\Ddd\Domain\DateTime\Instant;
-use Tuzex\Ddd\Domain\DateTime\TimePoint;
+use Tuzex\Ddd\Domain\Time\Instant;
+use Tuzex\Ddd\Domain\Time\TimePoint;
 
 abstract class TimePointType extends DateTimeTzImmutableType
 {
@@ -18,10 +20,10 @@ abstract class TimePointType extends DateTimeTzImmutableType
             return null;
         }
 
-        $dateTime = $value->dateTime();
-        $iso8601DateTimeFormat = $dateTime->iso8601Format();
+        $timeStamp = $value->instant()->stamp();
+        $dateTime = new DateTimeImmutable('@'.$timeStamp->value(), new DateTimeZone('UTC'));
 
-        return parent::convertToDatabaseValue(sprintf('%s %s', $iso8601DateTimeFormat->date(), $iso8601DateTimeFormat->time()), $platform);
+        return parent::convertToDatabaseValue($dateTime, $platform);
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform): ?TimePoint
