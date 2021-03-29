@@ -2,17 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Application;
+namespace Tuzex\Ddd\Infrastructure\Application;
 
+use Tuzex\Ddd\Application\DomainEventBus;
+use Tuzex\Ddd\Application\DomainEventsEmitter;
 use Tuzex\Ddd\Domain\DomainEvents;
 
-final class StaticDomainEventsPropagator implements DomainEventsPropagator
+final class MemoryDomainEventsEmitter implements DomainEventsEmitter
 {
     public function __construct(
         private DomainEventBus $domainEventBus
     ) {}
 
-    public function propagate(): void
+    public function emit(): void
     {
         $domainEvents = DomainEvents::release();
 

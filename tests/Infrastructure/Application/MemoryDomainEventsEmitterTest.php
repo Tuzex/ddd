@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Test\Application;
+namespace Tuzex\Ddd\Test\Infrastructure\Application;
 
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Application\DomainEventBus;
-use Tuzex\Ddd\Application\StaticDomainEventsPropagator;
 use Tuzex\Ddd\Domain\DomainEvent;
 use Tuzex\Ddd\Domain\DomainEvents;
+use Tuzex\Ddd\Infrastructure\Application\MemoryDomainEventsEmitter;
 
-final class StaticDomainEventsPropagatorTest extends TestCase
+final class MemoryDomainEventsEmitterTest extends TestCase
 {
     /**
      * @dataProvider provideDomainEvents
@@ -21,8 +21,8 @@ final class StaticDomainEventsPropagatorTest extends TestCase
 
         $domainEventBus = $this->mockDomainEventBus($domainEvents);
 
-        $domainEventPropagator = new StaticDomainEventsPropagator($domainEventBus);
-        $domainEventPropagator->propagate();
+        $domainEventEmitter = new MemoryDomainEventsEmitter($domainEventBus);
+        $domainEventEmitter->emit();
     }
 
     public function provideDomainEvents(): iterable
