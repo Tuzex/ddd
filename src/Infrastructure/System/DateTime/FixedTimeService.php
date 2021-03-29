@@ -25,9 +25,7 @@ final class FixedTimeService implements TimeService
 
         $dateTime = DateTimeImmutable::createFromFormat($format, $dateTime, $timeZone);
         if (!$dateTime) {
-            throw new InvalidArgumentException(
-                sprintf('Invalid datetime "%s" (%s).', $dateTime, $format)
-            );
+            throw new InvalidArgumentException(sprintf('Invalid datetime "%s" (%s).', $dateTime, $format));
         }
 
         return new self($dateTime);
