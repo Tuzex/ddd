@@ -70,7 +70,7 @@ final class DateTime
 
     public function modify(Seconds $seconds): self
     {
-        return new self($this->instant->move($seconds));
+        return new self($this->instant->shift($seconds));
     }
 
     public function difference(self $that): Seconds
