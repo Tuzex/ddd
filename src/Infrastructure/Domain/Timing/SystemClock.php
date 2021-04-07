@@ -6,7 +6,7 @@ namespace Tuzex\Ddd\Infrastructure\Domain\Timing;
 
 use Tuzex\Ddd\Domain\Timing\Clock;
 use Tuzex\Ddd\Domain\Timing\Instant;
-use Tuzex\Ddd\Infrastructure\System\DateTime\TimeService;
+use Tuzex\Timekeeper\TimeService;
 
 final class SystemClock implements Clock
 {
