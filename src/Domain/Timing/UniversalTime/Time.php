@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\Timing;
+namespace Tuzex\Ddd\Domain\Timing\UniversalTime;
 
 use DateTimeImmutable;
-use Tuzex\Ddd\Domain\Timing\TimeUnit\Hour;
-use Tuzex\Ddd\Domain\Timing\TimeUnit\Minute;
-use Tuzex\Ddd\Domain\Timing\TimeUnit\Second;
+use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\Hour;
+use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\Minute;
+use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\Second;
 
 final class Time
 {

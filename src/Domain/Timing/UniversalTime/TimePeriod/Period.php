@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\Timing\TimePeriod;
+namespace Tuzex\Ddd\Domain\Timing\UniversalTime\TimePeriod;
 
 abstract class Period
 {

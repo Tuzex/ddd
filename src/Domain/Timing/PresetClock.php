@@ -6,7 +6,7 @@ namespace Tuzex\Ddd\Domain\Timing;
 
 use DateTimeImmutable;
 
-final class AnalogClock implements Clock
+final class PresetClock implements Clock
 {
     public function __construct(
         private DateTimeImmutable $dateTime

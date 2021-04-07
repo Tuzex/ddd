@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tuzex\Ddd\Domain\Timing;
 
-use Tuzex\Ddd\Domain\Timing\TimePeriod\Seconds;
+use Tuzex\Ddd\Domain\Timing\UniversalTime\TimePeriod\Seconds;
 
 final class Instant
 {
@@ -29,7 +29,7 @@ final class Instant
         return $this->epochSeconds->compare($that->epochSeconds);
     }
 
-    public function move(Seconds $seconds): self
+    public function shift(Seconds $seconds): self
     {
         return new self(
             $this->epochSeconds->increase($seconds)

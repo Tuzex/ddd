@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\Timing;
+namespace Tuzex\Ddd\Domain\Timing\UniversalTime;
 
 use DateTimeImmutable;
 use DateTimeZone;
-use Tuzex\Ddd\Domain\Timing\TimePeriod\Seconds;
+use Tuzex\Ddd\Domain\Timing\Clock;
+use Tuzex\Ddd\Domain\Timing\Instant;
+use Tuzex\Ddd\Domain\Timing\UniversalTime\TimePeriod\Seconds;
 
 final class DateTime
 {

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\Timing;
+namespace Tuzex\Ddd\Domain\Timing\UniversalTime;
 
 use DateTimeImmutable;
-use Tuzex\Ddd\Domain\Timing\TimeUnit\Day;
-use Tuzex\Ddd\Domain\Timing\TimeUnit\DayOfWeek;
-use Tuzex\Ddd\Domain\Timing\TimeUnit\Month;
-use Tuzex\Ddd\Domain\Timing\TimeUnit\Week;
-use Tuzex\Ddd\Domain\Timing\TimeUnit\Year;
+use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\Day;
+use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\DayOfWeek;
+use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\Month;
+use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\Week;
+use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\Year;
 
 final class Date
 {

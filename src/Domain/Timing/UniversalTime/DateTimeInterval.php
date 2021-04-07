@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\Timing;
+namespace Tuzex\Ddd\Domain\Timing\UniversalTime;
 
 use Webmozart\Assert\Assert;
 
