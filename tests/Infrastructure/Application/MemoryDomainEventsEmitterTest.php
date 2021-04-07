@@ -19,7 +19,7 @@ final class MemoryDomainEventsEmitterTest extends TestCase
     {
         DomainEvents::occur(...$domainEvents);
 
-        $domainEventBus = $this->mockDomainEventBus($domainEvents);
+        $domainEventBus = $this->mockDomainEventBus(...$domainEvents);
 
         $domainEventEmitter = new MemoryDomainEventsEmitter($domainEventBus);
         $domainEventEmitter->emit();
@@ -36,7 +36,7 @@ final class MemoryDomainEventsEmitterTest extends TestCase
         }
     }
 
-    private function mockDomainEventBus(array $domainEvents): DomainEventBus
+    private function mockDomainEventBus(DomainEvent ...$domainEvents): DomainEventBus
     {
         $countOfDomainEvents = count($domainEvents);
 
