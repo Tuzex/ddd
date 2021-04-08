@@ -6,15 +6,16 @@ namespace Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit;
 
 use Webmozart\Assert\Assert;
 
-final class Year
+final class Year extends Unit
 {
     public const SECONDS_PER_YEAR = 31556926;
     public const MONTHS_PER_YEAR = 12;
     public const WEEKS_PER_YEAR = 53;
 
-    public function __construct(
-        private int $value
-    ) {
-        Assert::range($this->value, 1000, 2999, 'The year is out of the range (from %2$s to %3$s), "%s" given.');
+    public static function of(int $value): self
+    {
+        Assert::range($value, 1000, 2999, 'The year is out of the range (from %2$s to %3$s), "%s" given.');
+
+        return new self($value);
     }
 }

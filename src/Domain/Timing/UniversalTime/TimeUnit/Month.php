@@ -6,13 +6,14 @@ namespace Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit;
 
 use Webmozart\Assert\Assert;
 
-final class Month
+final class Month extends Unit
 {
     public const SECONDS_PER_MONTH = 2629743;
 
-    public function __construct(
-        private int $value
-    ) {
-        Assert::range($this->value, 1, Year::MONTHS_PER_YEAR - 1, 'The month of the year is out of the range (from %2$s to %3$s), "%s" given.');
+    public static function of(int $value): self
+    {
+        Assert::range($value, 1, Year::MONTHS_PER_YEAR, 'The month of the year is out of the range (from %2$s to %3$s), "%s" given.');
+
+        return new self($value);
     }
 }

@@ -6,15 +6,16 @@ namespace Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit;
 
 use Webmozart\Assert\Assert;
 
-final class Day
+final class Day extends Unit
 {
     public const SECONDS_PER_DAY = 86400;
     public const MINUTES_PER_DAY = 1440;
     public const HOURS_PER_DAY = 24;
 
-    public function __construct(
-        private int $value
-    ) {
-        Assert::range($this->value, 1, 31, 'The day of the month is out of the range (from %2$s to %3$s), "%s" given.');
+    public static function of(int $value): self
+    {
+        Assert::range($value, 1, 31, 'The day of the month is out of the range (from %2$s to %3$s), "%s" given.');
+
+        return new self($value);
     }
 }

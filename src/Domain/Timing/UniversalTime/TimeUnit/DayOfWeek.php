@@ -6,16 +6,12 @@ namespace Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit;
 
 use Webmozart\Assert\Assert;
 
-final class DayOfWeek
+final class DayOfWeek extends Unit
 {
-    public function __construct(
-        private int $value
-    ) {
-        Assert::range($this->value, 1, Week::DAYS_PER_WEEK, 'The day of the week is out of the range (from %2$s to %3$s), "%s" given.');
-    }
-
-    public function value(): int
+    public static function of(int $value): self
     {
-        return $this->value;
+        Assert::range($value, 1, Week::DAYS_PER_WEEK, 'The day of the week is out of the range (from %2$s to %3$s), "%s" given.');
+
+        return new self($value);
     }
 }
