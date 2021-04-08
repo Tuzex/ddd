@@ -32,7 +32,7 @@ final class Seconds extends Period
 
     public function compare(self $that): int
     {
-        return $this->value <=> $that->value;
+        return $this->absolute()->value <=> $that->absolute()->value;
     }
 
     public function increase(self $seconds): self
