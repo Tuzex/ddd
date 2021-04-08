@@ -67,12 +67,12 @@ final class Duration
 
     public function forward(): Seconds
     {
-        return $this->seconds->negated();
+        return $this->seconds->absolute();
     }
 
     public function backward(): Seconds
     {
-        return $this->seconds->absolute();
+        return $this->seconds->negated();
     }
 
     public function days(): Days
