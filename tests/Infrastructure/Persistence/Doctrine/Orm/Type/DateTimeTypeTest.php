@@ -18,7 +18,7 @@ final class DateTimeTypeTest extends TestCase
     /**
      * @dataProvider provideDataForDatabase
      */
-    public function testItConvertsValueObjectToDatabaseValue($dateTime, $result): void
+    public function testItConvertsValueObjectToDatabaseValue(?DateTime $dateTime, ?string $result): void
     {
         $dateTimeType = new DateTimeType();
         $databaseDateTime = $dateTimeType->convertToDatabaseValue($dateTime, $this->mockPlatform());
@@ -45,7 +45,7 @@ final class DateTimeTypeTest extends TestCase
     /**
      * @dataProvider provideDataForDomain
      */
-    public function testItConvertsDatabaseValueToValueObject($dateTime, $result): void
+    public function testItConvertsDatabaseValueToValueObject(?DateTimeImmutable $dateTime, ?int $result): void
     {
         $dateTimeType = new DateTimeType();
         $domainDateTime = $dateTimeType->convertToPHPValue($dateTime, $this->mockPlatform());
