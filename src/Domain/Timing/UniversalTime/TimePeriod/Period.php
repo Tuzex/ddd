@@ -10,6 +10,11 @@ abstract class Period
         protected int $value
     ) {}
 
+    public function equals(self $that): bool
+    {
+        return $this::class === $that::class && $that->value === $this->value;
+    }
+
     public function positive(): bool
     {
         return $this->value >= 0;

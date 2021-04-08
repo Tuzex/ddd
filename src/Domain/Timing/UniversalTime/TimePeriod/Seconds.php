@@ -25,11 +25,6 @@ final class Seconds extends Period
         return new self($minutes->value * Minute::SECONDS_PER_MINUTE);
     }
 
-    public function equals(self $that): bool
-    {
-        return $that->value === $this->value;
-    }
-
     public function compare(self $that): int
     {
         return $this->absolute()->value <=> $that->absolute()->value;
