@@ -40,24 +40,24 @@ final class Duration
         return $this->seconds->equals($that->seconds);
     }
 
-    public function isLongerThan(self $that): bool
+    public function longerThan(self $that): bool
     {
         return 0 < $this->seconds->compare($that->seconds);
     }
 
-    public function isLongerOrEqualThan(self $that): bool
+    public function longerThanOrEqualTo(self $that): bool
     {
-        return $this->isLongerThan($that) || $this->equals($that);
+        return 0 <= $this->seconds->compare($that->seconds);
     }
 
-    public function isShorterThan(self $that): bool
+    public function shorterThan(self $that): bool
     {
         return 0 > $this->seconds->compare($that->seconds);
     }
 
-    public function isShorterOrEqualThan(self $that): bool
+    public function shorterOrEqualThan(self $that): bool
     {
-        return $this->isShorterThan($that) || $this->equals($that);
+        return 0 >= $this->seconds->compare($that->seconds);
     }
 
     public function length(): Seconds
