@@ -123,7 +123,7 @@ final class DurationTest extends TestCase
      */
     public function testItIsShorterThanOrEqual(Duration $origin, Duration $another, bool $result): void
     {
-        $this->assertSame($result, $origin->shorterOrEqualThan($another));
+        $this->assertSame($result, $origin->shorterThanOrEqualTo($another));
     }
 
     public function provideDataForComparisonShorterThanOrEqualTo(): iterable

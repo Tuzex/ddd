@@ -55,7 +55,7 @@ final class Duration
         return 0 > $this->seconds->compare($that->seconds);
     }
 
-    public function shorterOrEqualThan(self $that): bool
+    public function shorterThanOrEqualTo(self $that): bool
     {
         return 0 >= $this->seconds->compare($that->seconds);
     }

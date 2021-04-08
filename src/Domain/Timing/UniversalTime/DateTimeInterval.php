@@ -13,7 +13,7 @@ final class DateTimeInterval
         private DateTime $end,
     ) {
         Assert::true(
-            $this->end->isLaterThan($this->beginning),
+            $this->end->laterThan($this->beginning),
             'The beginning of the time interval must be earlier than the end.'
         );
     }
@@ -36,49 +36,49 @@ final class DateTimeInterval
 
     public function isEarlierThan(self $that): bool
     {
-        return $this->end->isEarlierOrEqualThan($that->beginning);
+        return $this->end->earlierThanOrEqualTo($that->beginning);
     }
 
     public function isDuring(self $that): bool
     {
-        return $this->end->isLaterOrEqualThan($that->beginning)
-            && $this->beginning->isEarlierOrEqualThan($that->end);
+        return $this->end->laterThanOrEqualTo($that->beginning)
+            && $this->beginning->earlierThanOrEqualTo($that->end);
     }
 
     public function isLaterThan(self $that): bool
     {
-        return $this->beginning->isLaterOrEqualThan($that->end);
+        return $this->beginning->laterThanOrEqualTo($that->end);
     }
 
     public function beginsEarlierThan(self $that): bool
     {
-        return $this->beginning->isEarlierThan($that->beginning);
+        return $this->beginning->earlierThan($that->beginning);
     }
 
     public function beginsDuring(self $that): bool
     {
-        return $this->beginning->isLaterOrEqualThan($that->beginning);
+        return $this->beginning->laterThanOrEqualTo($that->beginning);
     }
 
     public function beginsLaterThan(self $that): bool
     {
-        return $this->beginning->isEarlierThan($that->end);
+        return $this->beginning->earlierThan($that->end);
     }
 
     public function endsEarlierThan(self $that): bool
     {
-        return $this->end->isEarlierThan($that->beginning);
+        return $this->end->earlierThan($that->beginning);
     }
 
     public function endsDuring(self $that): bool
     {
-        return $this->end->isEarlierOrEqualThan($that->end)
-            && $this->end->isLaterOrEqualThan($that->beginning);
+        return $this->end->earlierThanOrEqualTo($that->end)
+            && $this->end->laterThanOrEqualTo($that->beginning);
     }
 
     public function endsLaterThan(self $that): bool
     {
-        return $this->end->isLaterThan($that->end);
+        return $this->end->laterThan($that->end);
     }
 
     public function extend(Duration $duration): self

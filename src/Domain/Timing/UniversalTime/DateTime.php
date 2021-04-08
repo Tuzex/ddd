@@ -38,34 +38,34 @@ final class DateTime
         return $this->instant->equals($that->instant);
     }
 
-    public function isLaterThan(self $that): bool
+    public function laterThan(self $that): bool
     {
         return 0 < $this->instant->compare($that->instant);
     }
 
-    public function isLaterOrEqualThan(self $that): bool
+    public function laterThanOrEqualTo(self $that): bool
     {
         return 0 <= $this->instant->compare($that->instant);
     }
 
-    public function isEarlierThan(self $that): bool
+    public function earlierThan(self $that): bool
     {
         return 0 > $this->instant->compare($that->instant);
     }
 
-    public function isEarlierOrEqualThan(self $that): bool
+    public function earlierThanOrEqualTo(self $that): bool
     {
         return 0 >= $this->instant->compare($that->instant);
     }
 
     public function isBetweenInclusive(self $from, self $to): bool
     {
-        return $this->isLaterOrEqualThan($from) && $this->isEarlierOrEqualThan($to);
+        return $this->laterThanOrEqualTo($from) && $this->earlierThanOrEqualTo($to);
     }
 
     public function isBetweenExclusive(self $from, self $to): bool
     {
-        return $this->isLaterThan($from) && $this->isEarlierThan($to);
+        return $this->laterThan($from) && $this->earlierThan($to);
     }
 
     public function modify(Seconds $seconds): self
