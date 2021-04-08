@@ -6,7 +6,6 @@ namespace Tuzex\Ddd\Test\Domain\Timing\UniversalTime\TimeUnit;
 
 use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\Day;
 use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\Hour;
-use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\Second;
 
 final class DayTest extends UnitTest
 {

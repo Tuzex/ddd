@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tuzex\Ddd\Test\Domain\Timing\UniversalTime\TimeUnit;
 
-use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\Year;
 use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\Month;
+use Tuzex\Ddd\Domain\Timing\UniversalTime\TimeUnit\Year;
 
 final class YearTest extends UnitTest
 {
