@@ -8,10 +8,10 @@ use Webmozart\Assert\Assert;
 
 final class DayOfWeek extends Unit
 {
-    public static function of(int $value): self
+    public function __construct(int $value)
     {
         Assert::range($value, 1, Week::DAYS_PER_WEEK, 'The day of the week is out of the range (from %2$s to %3$s), "%s" given.');
 
-        return new self($value);
+        parent::__construct($value);
     }
 }

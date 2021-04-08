@@ -11,10 +11,10 @@ final class Week extends Unit
     public const SECONDS_PER_WEEK = 604800;
     public const DAYS_PER_WEEK = 7;
 
-    public static function of(int $value): self
+    public function __construct(int $value)
     {
         Assert::range($value, 1, Year::WEEKS_PER_YEAR, 'The week of the year is out of the range (from %2$s to %3$s), "%s" given.');
 
-        return new self($value);
+        parent::__construct($value);
     }
 }

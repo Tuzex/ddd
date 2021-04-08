@@ -20,16 +20,16 @@ final class DayTest extends UnitTest
     public function provideDataForEquality(): iterable
     {
         return [
-            'equal' => [Day::of(10), Day::of(10), true],
-            'unequal' => [Day::of(10), Day::of(20), false],
-            'mismatch' => [Day::of(10), Hour::of(6), false],
+            'equal' => [new Day(10), new Day(10), true],
+            'unequal' => [new Day(10), new Day(20), false],
+            'mismatch' => [new Day(10), new Hour(6), false],
         ];
     }
 
     public function provideData(): array
     {
         return [
-            'ten' => [Day::of(10), 10],
+            'ten' => [new Day(10), 10],
         ];
     }
 }

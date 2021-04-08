@@ -10,10 +10,10 @@ final class Month extends Unit
 {
     public const SECONDS_PER_MONTH = 2629743;
 
-    public static function of(int $value): self
+    public function __construct(int $value)
     {
         Assert::range($value, 1, Year::MONTHS_PER_YEAR, 'The month of the year is out of the range (from %2$s to %3$s), "%s" given.');
 
-        return new self($value);
+        parent::__construct($value);
     }
 }

@@ -12,10 +12,10 @@ final class Day extends Unit
     public const MINUTES_PER_DAY = 1440;
     public const HOURS_PER_DAY = 24;
 
-    public static function of(int $value): self
+    public function __construct(int $value)
     {
         Assert::range($value, 1, 31, 'The day of the month is out of the range (from %2$s to %3$s), "%s" given.');
 
-        return new self($value);
+        parent::__construct($value);
     }
 }

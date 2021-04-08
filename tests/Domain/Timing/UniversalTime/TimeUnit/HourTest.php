@@ -20,16 +20,16 @@ final class HourTest extends UnitTest
     public function provideDataForEquality(): iterable
     {
         return [
-            'equal' => [Hour::of(10), Hour::of(10), true],
-            'unequal' => [Hour::of(10), Hour::of(20), false],
-            'mismatch' => [Hour::of(10), Second::of(30), false],
+            'equal' => [new Hour(10), new Hour(10), true],
+            'unequal' => [new Hour(10), new Hour(20), false],
+            'mismatch' => [new Hour(10), new Second(30), false],
         ];
     }
 
     public function provideData(): array
     {
         return [
-            'ten' => [Hour::of(10), 10],
+            'ten' => [new Hour(10), 10],
         ];
     }
 }

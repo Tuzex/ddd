@@ -12,10 +12,10 @@ final class Year extends Unit
     public const MONTHS_PER_YEAR = 12;
     public const WEEKS_PER_YEAR = 53;
 
-    public static function of(int $value): self
+    public function __construct(int $value)
     {
         Assert::range($value, 1000, 2999, 'The year is out of the range (from %2$s to %3$s), "%s" given.');
 
-        return new self($value);
+        parent::__construct($value);
     }
 }

@@ -20,16 +20,16 @@ final class WeekTest extends UnitTest
     public function provideDataForEquality(): iterable
     {
         return [
-            'equal' => [Week::of(10), Week::of(10), true],
-            'unequal' => [Week::of(10), Week::of(20), false],
-            'mismatch' => [Week::of(10), Day::of(6), false],
+            'equal' => [new Week(10), new Week(10), true],
+            'unequal' => [new Week(10), new Week(20), false],
+            'mismatch' => [new Week(10), new Day(6), false],
         ];
     }
 
     public function provideData(): array
     {
         return [
-            'ten' => [Week::of(10), 10],
+            'ten' => [new Week(10), 10],
         ];
     }
 }

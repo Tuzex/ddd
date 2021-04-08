@@ -20,16 +20,16 @@ final class SecondTest extends UnitTest
     public function provideDataForEquality(): iterable
     {
         return [
-            'equal' => [Second::of(10), Second::of(10), true],
-            'unequal' => [Second::of(10), Second::of(20), false],
-            'mismatch' => [Second::of(10), Hour::of(1), false],
+            'equal' => [new Second(10), new Second(10), true],
+            'unequal' => [new Second(10), new Second(20), false],
+            'mismatch' => [new Second(10), new Hour(1), false],
         ];
     }
 
     public function provideData(): array
     {
         return [
-            'ten' => [Second::of(10), 10],
+            'ten' => [new Second(10), 10],
         ];
     }
 }

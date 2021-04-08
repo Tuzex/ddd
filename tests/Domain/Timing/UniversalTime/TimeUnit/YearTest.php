@@ -20,16 +20,16 @@ final class YearTest extends UnitTest
     public function provideDataForEquality(): iterable
     {
         return [
-            'equal' => [Year::of(2020), Year::of(2020), true],
-            'unequal' => [Year::of(2020), Year::of(2021), false],
-            'mismatch' => [Year::of(2020), Month::of(6), false],
+            'equal' => [new Year(2020), new Year(2020), true],
+            'unequal' => [new Year(2020), new Year(2021), false],
+            'mismatch' => [new Year(2020), new Month(6), false],
         ];
     }
 
     public function provideData(): array
     {
         return [
-            'ten' => [Year::of(2021), 2021],
+            'ten' => [new Year(2021), 2021],
         ];
     }
 }

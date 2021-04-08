@@ -20,16 +20,16 @@ final class DayOfWeekTest extends UnitTest
     public function provideDataForEquality(): iterable
     {
         return [
-            'equal' => [DayOfWeek::of(5), DayOfWeek::of(5), true],
-            'unequal' => [DayOfWeek::of(5), DayOfWeek::of(3), false],
-            'mismatch' => [DayOfWeek::of(5), Day::of(5), false],
+            'equal' => [new DayOfWeek(5), new DayOfWeek(5), true],
+            'unequal' => [new DayOfWeek(5), new DayOfWeek(3), false],
+            'mismatch' => [new DayOfWeek(5), new Day(5), false],
         ];
     }
 
     public function provideData(): array
     {
         return [
-            'ten' => [DayOfWeek::of(5), 5],
+            'ten' => [new DayOfWeek(5), 5],
         ];
     }
 }

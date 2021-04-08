@@ -20,16 +20,16 @@ final class MinuteTest extends UnitTest
     public function provideDataForEquality(): iterable
     {
         return [
-            'equal' => [Minute::of(10), Minute::of(10), true],
-            'unequal' => [Minute::of(10), Minute::of(20), false],
-            'mismatch' => [Minute::of(10), Second::of(30), false],
+            'equal' => [new Minute(10), new Minute(10), true],
+            'unequal' => [new Minute(10), new Minute(20), false],
+            'mismatch' => [new Minute(10), new Second(30), false],
         ];
     }
 
     public function provideData(): array
     {
         return [
-            'ten' => [Minute::of(10), 10],
+            'ten' => [new Minute(10), 10],
         ];
     }
 }

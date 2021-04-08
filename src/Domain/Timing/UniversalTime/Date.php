@@ -32,7 +32,7 @@ final class Date
         ];
 
         return new self(
-            ...array_map(fn (array $unit) => $unit[0]::of((int) $dateTime->format($unit[1])), $units)
+            ...array_map(fn (array $unit) => new $unit[0]((int) $dateTime->format($unit[1])), $units)
         );
     }
 

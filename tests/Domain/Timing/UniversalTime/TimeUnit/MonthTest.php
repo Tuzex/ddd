@@ -20,16 +20,16 @@ final class MonthTest extends UnitTest
     public function provideDataForEquality(): iterable
     {
         return [
-            'equal' => [Month::of(10), Month::of(10), true],
-            'unequal' => [Month::of(10), Month::of(12), false],
-            'mismatch' => [Month::of(10), Day::of(6), false],
+            'equal' => [new Month(10), new Month(10), true],
+            'unequal' => [new Month(10), new Month(12), false],
+            'mismatch' => [new Month(10), new Day(6), false],
         ];
     }
 
     public function provideData(): array
     {
         return [
-            'ten' => [Month::of(10), 10],
+            'ten' => [new Month(10), 10],
         ];
     }
 }

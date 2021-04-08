@@ -17,7 +17,7 @@ abstract class UnitTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $unit::of($value);
+        new $unit($value);
     }
 
     abstract public function provideDataForCreation(): array;
