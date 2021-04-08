@@ -66,9 +66,9 @@ final class NominalValueTest extends TestCase
     public function provideDataForComparison(): array
     {
         return [
-            'less' => [1234, 800, -1],
+            'less' => [1234, 1467, -1],
             'equal' => [1234, 1234, 0],
-            'greater' => [1234, 1467, 1],
+            'greater' => [1234, 800, 1],
         ];
     }
 

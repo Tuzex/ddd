@@ -27,7 +27,7 @@ final class NominalValue
 
     public function compare(self $that): int
     {
-        return $that->sub <=> $this->sub;
+        return $this->sub <=> $that->sub;
     }
 
     public function main(): float

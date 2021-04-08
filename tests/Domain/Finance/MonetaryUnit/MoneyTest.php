@@ -62,8 +62,8 @@ final class MoneyTest extends TestCase
     public function provideDataForComparisonLessThan(): iterable
     {
         $results = [
-            'equal' => false,
             'less-than' => true,
+            'equal' => false,
             'greater-than' => false,
         ];
 
@@ -81,8 +81,8 @@ final class MoneyTest extends TestCase
     public function provideDataForComparisonLessThanOrEqualTo(): iterable
     {
         $results = [
-            'equal' => true,
             'less-than' => true,
+            'equal' => true,
             'greater-than' => false,
         ];
 
@@ -100,8 +100,8 @@ final class MoneyTest extends TestCase
     public function provideDataForComparisonGreaterThan(): iterable
     {
         $results = [
-            'equal' => false,
             'less-than' => false,
+            'equal' => false,
             'greater-than' => true,
         ];
 
@@ -119,8 +119,8 @@ final class MoneyTest extends TestCase
     public function provideDataForComparisonGreaterThanOrEqualTo(): iterable
     {
         $results = [
-            'equal' => true,
             'less-than' => false,
+            'equal' => true,
             'greater-than' => true,
         ];
 
@@ -261,9 +261,9 @@ final class MoneyTest extends TestCase
     {
         $currency = new Euro();
         $circumstances = [
+            'less-than' => [1.00, 2.00],
             'equal' => [1.00, 1.00],
-            'less-than' => [2.00, 1.00],
-            'greater-than' => [1.00, 2.00],
+            'greater-than' => [2.00, 1.00],
         ];
 
         foreach ($circumstances as $type => $data) {
