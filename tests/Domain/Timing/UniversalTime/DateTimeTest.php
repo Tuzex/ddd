@@ -35,19 +35,19 @@ final class DateTimeTest extends TestCase
     }
 
     /**
-     * @dataProvider provideDateTime
+     * @dataProvider provideNativeDateTime
      */
-    public function testItReturnsValidInstant(DateTimeImmutable $dateTimeImmutable): void
+    public function testItReturnsValidInstant(DateTimeImmutable $present): void
     {
-        $dateTime = DateTime::by($dateTimeImmutable);
+        $dateTime = DateTime::by($present);
 
         $this->assertSame(self::PRESENT, $dateTime->instant()->epochSeconds()->asNumber());
     }
 
-    public function provideDateTime(): array
+    public function provideNativeDateTime(): array
     {
         return [
-            'present' => new DateTimeImmutable('@'.self::PRESENT, new DateTimeZone('UTC')),
+            'present' => [new DateTimeImmutable('@'.self::PRESENT, new DateTimeZone('UTC'))],
         ];
     }
 
@@ -223,17 +223,17 @@ final class DateTimeTest extends TestCase
     }
 
     /**
-     * @dataProvider provideDateTime
+     * @dataProvider provideNativeDateTime
      */
-    public function testItReturnsValidDateAndTime(DateTimeImmutable $dateTimeImmutable): void
+    public function testItReturnsValidDateAndTime(DateTimeImmutable $present): void
     {
-        $dateTime = DateTime::by($dateTimeImmutable);
+        $dateTime = DateTime::by($present);
 
         $date = $dateTime->date();
         $time = $dateTime->time();
 
         $this->assertSame(
-            $dateTimeImmutable->format('Y-m-d H:i:s'),
+            $present->format('Y-m-d H:i:s'),
             vsprintf('%s-%02d-%02d %02d:%02d:%02d', [
                 $date->year()->asNumber(),
                 $date->month()->asNumber(),
