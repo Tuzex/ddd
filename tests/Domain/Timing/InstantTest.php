@@ -36,12 +36,12 @@ final class InstantTest extends TestCase
 
     public function provideDataForEquality(): iterable
     {
-        $presence = new Seconds(time());
+        $present = new Seconds(time());
         $past = new Seconds(1617802039);
 
         $circumstances = [
-            'identical' => [$presence, $presence, true],
-            'mismatched' => [$presence, $past, false],
+            'identical' => [$present, $present, true],
+            'mismatched' => [$present, $past, false],
         ];
 
         return $this->generateDataForComparison($circumstances);
@@ -57,13 +57,13 @@ final class InstantTest extends TestCase
 
     public function provideDataForComparison(): iterable
     {
-        $presence = new Seconds(time());
+        $present = new Seconds(time());
         $past = new Seconds(1617802039);
 
         $circumstances = [
-            'less' => [$past, $presence, -1],
-            'equal' => [$presence, $presence, 0],
-            'greater' => [$presence, $past, 1],
+            'less' => [$past, $present, -1],
+            'equal' => [$present, $present, 0],
+            'greater' => [$present, $past, 1],
         ];
 
         return $this->generateDataForComparison($circumstances);
@@ -81,10 +81,10 @@ final class InstantTest extends TestCase
 
     public function provideDataForTimeShifting(): iterable
     {
-        $presence = new Seconds(1617802039);
+        $present = new Seconds(1617802039);
         $circumstances = [
-            'to-the-future' => [$presence, 11253251, 1629055290],
-            'to-the-past' => [$presence, -11253251, 1606548788],
+            'to-the-future' => [$present, 11253251, 1629055290],
+            'to-the-past' => [$present, -11253251, 1606548788],
         ];
 
         foreach ($circumstances as $type => $data) {
@@ -106,10 +106,10 @@ final class InstantTest extends TestCase
 
     public function provideDataForTimeDifferentiation(): iterable
     {
-        $presence = new Seconds(1617802039);
+        $present = new Seconds(1617802039);
         $circumstances = [
-            'future' => [$presence, new Seconds(1606548788), 11253251],
-            'past' => [$presence, new Seconds(1617803851), -1812],
+            'future' => [$present, new Seconds(1606548788), 11253251],
+            'past' => [$present, new Seconds(1617803851), -1812],
         ];
 
         return $this->generateDataForComparison($circumstances);
