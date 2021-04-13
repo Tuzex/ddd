@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\Timing\Clock;
 use Tuzex\Ddd\Domain\Timing\Instant;
 use Tuzex\Ddd\Domain\Timing\UniversalTime\DateTime;
+use Tuzex\Ddd\Domain\Timing\UniversalTime\TimePeriod\Seconds;
 
 final class DateTimeTest extends TestCase
 {
@@ -33,13 +34,21 @@ final class DateTimeTest extends TestCase
         $this->assertSame(self::PRESENT, $origin->instant()->epochSeconds()->asNumber());
     }
 
-    public function testItReturnsValidInstant(): void
+    /**
+     * @dataProvider provideDateTime
+     */
+    public function testItReturnsValidInstant(DateTimeImmutable $dateTimeImmutable): void
     {
-        $dateTime = DateTime::by(
-            $dateTimeImmutable = $this->setupDateTimeImmutable()
-        );
+        $dateTime = DateTime::by($dateTimeImmutable);
 
         $this->assertSame(self::PRESENT, $dateTime->instant()->epochSeconds()->asNumber());
+    }
+
+    public function provideDateTime(): array
+    {
+        return [
+            'present' => new DateTimeImmutable('@'.self::PRESENT, new DateTimeZone('UTC')),
+        ];
     }
 
     /**
@@ -142,11 +151,83 @@ final class DateTimeTest extends TestCase
         return $this->generateDataForComparison($results);
     }
 
-    public function testItReturnsValidDateAndTime(): void
+    /**
+     * @dataProvider provideDataForComparisonInclusiveBetween
+     */
+    public function testItIsBetweenInclusive(DateTime $origin, DateTime $start, DateTime $end, bool $result): void
     {
-        $dateTime = DateTime::by(
-            $dateTimeImmutable = $this->setupDateTimeImmutable()
-        );
+        $this->assertSame($result, $origin->isBetweenInclusive($start, $end));
+    }
+
+    public function provideDataForComparisonInclusiveBetween(): iterable
+    {
+        $results = [
+            'earlier-than-start' => false,
+            'equal-to-start' => true,
+            'later-than-start' => true,
+            'earlier-than-end' => true,
+            'equal-to-end' => true,
+            'later-than-end' => false,
+        ];
+
+        return $this->generateDataForDetermination($results);
+    }
+
+    /**
+     * @dataProvider provideDataForComparisonInclusiveBetween
+     */
+    public function testItIsBetweenExclusive(DateTime $origin, DateTime $start, DateTime $end, bool $result): void
+    {
+        $this->assertSame($result, $origin->isBetweenInclusive($start, $end));
+    }
+
+    public function provideDataForComparisonExclusiveBetween(): iterable
+    {
+        $results = [
+            'earlier-than-start' => false,
+            'equal-to-start' => false,
+            'later-than-start' => true,
+            'earlier-than-end' => true,
+            'equal-to-end' => false,
+            'later-than-end' => false,
+        ];
+
+        return $this->generateDataForDetermination($results);
+    }
+
+    /**
+     * @dataProvider provideDataForModification
+     */
+    public function testItModifies(DateTime $origin, Seconds $modifier, int $result): void
+    {
+        $modified = $origin->modify($modifier);
+
+        $this->assertSame($result, $modified->instant()->epochSeconds()->asNumber());
+    }
+
+    public function provideDataForModification(): iterable
+    {
+        $present = Instant::of(self::PRESENT);
+        $circumstances = [
+            'to-the-future' => [$present, 11253251, 1629147357],
+            'to-the-past' => [$present, -11253251, 1606640855],
+        ];
+
+        foreach ($circumstances as $type => $data) {
+            yield $type => [
+                'origin' => new DateTime($data[0]),
+                'modifier' => new Seconds($data[1]),
+                'result' => $data[2],
+            ];
+        }
+    }
+
+    /**
+     * @dataProvider provideDateTime
+     */
+    public function testItReturnsValidDateAndTime(DateTimeImmutable $dateTimeImmutable): void
+    {
+        $dateTime = DateTime::by($dateTimeImmutable);
 
         $date = $dateTime->date();
         $time = $dateTime->time();
@@ -181,9 +262,25 @@ final class DateTimeTest extends TestCase
         }
     }
 
-    private function setupDateTimeImmutable(): DateTimeImmutable
+    private function generateDataForDetermination(array $results): iterable
     {
-        return new DateTimeImmutable('@'.self::PRESENT, new DateTimeZone('UTC'));
+        $circumstances = [
+            'earlier-than-start' => [self::PAST, self::PRESENT, self::FUTURE],
+            'equal-to-start' => [self::PRESENT, self::PRESENT, self::FUTURE],
+            'later-than-start' => [self::FUTURE, self::PRESENT, self::FUTURE],
+            'earlier-than-end' => [self::PRESENT, self::PRESENT, self::FUTURE],
+            'equal-to-end' => [self::FUTURE, self::PRESENT, self::FUTURE],
+            'later-than-end' => [self::FUTURE, self::PAST, self::PRESENT],
+        ];
+
+        foreach ($circumstances as $type => $data) {
+            yield $type => [
+                'origin' => new DateTime(Instant::of($data[0])),
+                'start' => new DateTime(Instant::of($data[1])),
+                'end' => new DateTime(Instant::of($data[2])),
+                'result' => $results[$type],
+            ];
+        }
     }
 
     private function mockClock(): Clock

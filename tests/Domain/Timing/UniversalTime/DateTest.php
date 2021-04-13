@@ -10,16 +10,22 @@ use Tuzex\Ddd\Domain\Timing\UniversalTime\Date;
 
 final class DateTest extends TestCase
 {
+    private array $structure = [
+        'year' => 'Y',
+        'month' => 'm',
+        'week' => 'W',
+        'dayOfWeek' => 'N',
+        'day' => 'd',
+    ];
+
     public function testItReturnsValidUnits(): void
     {
-        $time = Date::by(
+        $date = Date::by(
             $dateTime = new DateTimeImmutable()
         );
 
-        $this->assertSame((int) $dateTime->format('Y'), $time->year()->asNumber());
-        $this->assertSame((int) $dateTime->format('m'), $time->month()->asNumber());
-        $this->assertSame((int) $dateTime->format('W'), $time->week()->asNumber());
-        $this->assertSame((int) $dateTime->format('N'), $time->dayOfWeek()->asNumber());
-        $this->assertSame((int) $dateTime->format('d'), $time->day()->asNumber());
+        foreach ($this->structure as $type => $format) {
+            $this->assertSame((int) $dateTime->format($format), $date->{$type}()->asNumber());
+        }
     }
 }
