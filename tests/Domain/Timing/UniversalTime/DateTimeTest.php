@@ -174,11 +174,11 @@ final class DateTimeTest extends TestCase
     }
 
     /**
-     * @dataProvider provideDataForComparisonInclusiveBetween
+     * @dataProvider provideDataForComparisonExclusiveBetween
      */
     public function testItIsBetweenExclusive(DateTime $origin, DateTime $start, DateTime $end, bool $result): void
     {
-        $this->assertSame($result, $origin->isBetweenInclusive($start, $end));
+        $this->assertSame($result, $origin->isBetweenExclusive($start, $end));
     }
 
     public function provideDataForComparisonExclusiveBetween(): iterable
@@ -267,8 +267,8 @@ final class DateTimeTest extends TestCase
         $circumstances = [
             'earlier-than-start' => [self::PAST, self::PRESENT, self::FUTURE],
             'equal-to-start' => [self::PRESENT, self::PRESENT, self::FUTURE],
-            'later-than-start' => [self::FUTURE, self::PRESENT, self::FUTURE],
-            'earlier-than-end' => [self::PRESENT, self::PRESENT, self::FUTURE],
+            'later-than-start' => [self::PRESENT, self::PAST, self::FUTURE],
+            'earlier-than-end' => [self::PRESENT, self::PAST, self::FUTURE],
             'equal-to-end' => [self::FUTURE, self::PRESENT, self::FUTURE],
             'later-than-end' => [self::FUTURE, self::PAST, self::PRESENT],
         ];
