@@ -23,5 +23,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::SKIP, [
         PhpCsFixer\Fixer\Basic\BracesFixer::class => null,
         PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer::class => null,
+        /** @todo Temporary issue in version 9.2< */
+        Symplify\CodingStandard\Fixer\ArrayNotation\StandaloneLineInMultilineArrayFixer::class => null,
     ]);
 };
