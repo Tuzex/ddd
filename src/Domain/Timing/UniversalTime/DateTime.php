@@ -73,9 +73,9 @@ final class DateTime
         return new self($this->instant->shift($seconds));
     }
 
-    public function difference(self $that): Seconds
+    public function difference(self $that): DateTimeInterval
     {
-        return $this->instant->delta($that->instant);
+        return new DateTimeInterval($this, $that);
     }
 
     public function instant(): Instant

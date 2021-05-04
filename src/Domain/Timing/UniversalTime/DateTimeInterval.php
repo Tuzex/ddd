@@ -8,7 +8,7 @@ use Webmozart\Assert\Assert;
 
 final class DateTimeInterval
 {
-    final private function __construct(
+    public function __construct(
         private DateTime $beginning,
         private DateTime $end,
     ) {
@@ -101,7 +101,9 @@ final class DateTimeInterval
 
     public function duration(): Duration
     {
-        return new Duration($this->end->difference($this->beginning));
+        return new Duration(
+            $this->beginning->instant()->delta($this->end->instant())
+        );
     }
 
     public function beginning(): DateTime
