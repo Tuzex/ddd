@@ -13,7 +13,7 @@ final class DateTimeType extends DateTimeImmutableType
 {
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
-        if (!$value instanceof DateTime) {
+        if (! $value instanceof DateTime) {
             return null;
         }
 
@@ -27,7 +27,7 @@ final class DateTimeType extends DateTimeImmutableType
     public function convertToPHPValue($value, AbstractPlatform $platform): ?DateTime
     {
         $dateTime = parent::convertToPHPValue($value, $platform);
-        if (!$dateTime instanceof DateTimeImmutable) {
+        if (! $dateTime instanceof DateTimeImmutable) {
             return null;
         }
 
