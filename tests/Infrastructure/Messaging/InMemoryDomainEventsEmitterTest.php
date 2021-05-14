@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Test\Infrastructure\Application;
+namespace Tuzex\Ddd\Test\Infrastructure\Messaging;
 
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Application\DomainEventBus;
 use Tuzex\Ddd\Domain\DomainEvent;
 use Tuzex\Ddd\Domain\DomainEvents;
-use Tuzex\Ddd\Infrastructure\Application\MemoryDomainEventsEmitter;
+use Tuzex\Ddd\Infrastructure\Messaging\InMemoryDomainEventsEmitter;
 
-final class MemoryDomainEventsEmitterTest extends TestCase
+final class InMemoryDomainEventsEmitterTest extends TestCase
 {
     /**
      * @dataProvider provideDomainEvents
      */
-    public function testItPropagatesDomainEvents(array $domainEvents): void
+    public function testItEmitsDomainEvents(array $domainEvents): void
     {
         DomainEvents::occur(...$domainEvents);
 
         $domainEventBus = $this->mockDomainEventBus(...$domainEvents);
 
-        $domainEventEmitter = new MemoryDomainEventsEmitter($domainEventBus);
+        $domainEventEmitter = new InMemoryDomainEventsEmitter($domainEventBus);
         $domainEventEmitter->emit();
     }
 
