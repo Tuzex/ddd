@@ -13,17 +13,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         __DIR__ . '/tests',
     ]);
 
-    $parameters->set(Option::SETS, [
-        SetList::COMMON,
-        SetList::CLEAN_CODE,
-        SetList::PSR_12,
-        SetList::SYMFONY,
-    ]);
-
     $parameters->set(Option::SKIP, [
         PhpCsFixer\Fixer\Basic\BracesFixer::class => null,
-        PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer::class => null,
-        /** @todo Temporary issue in version 9.2< */
-        Symplify\CodingStandard\Fixer\ArrayNotation\StandaloneLineInMultilineArrayFixer::class => null,
     ]);
+
+    $containerConfigurator->import(SetList::COMMON);
+    $containerConfigurator->import(SetList::CLEAN_CODE);
+    $containerConfigurator->import(SetList::PSR_12);
+    $containerConfigurator->import(SetList::SYMFONY);
 };
