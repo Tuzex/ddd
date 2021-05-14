@@ -6,5 +6,4 @@ namespace Tuzex\Ddd\Application\Entrypoint;
 
 interface QueryHandler
 {
-
 }
