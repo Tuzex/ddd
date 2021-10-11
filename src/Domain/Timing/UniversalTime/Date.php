@@ -23,16 +23,12 @@ final class Date
 
     public static function by(DateTimeImmutable $dateTime): self
     {
-        $units = [
-            [Year::class, 'Y'],
-            [Month::class, 'm'],
-            [Week::class, 'W'],
-            [DayOfWeek::class, 'N'],
-            [Day::class, 'd'],
-        ];
-
         return new self(
-            ...array_map(fn (array $unit) => new $unit[0]((int) $dateTime->format($unit[1])), $units)
+            new Year((int) $dateTime->format('Y')),
+            new Month((int) $dateTime->format('m')),
+            new Week((int) $dateTime->format('W')),
+            new DayOfWeek((int) $dateTime->format('N')),
+            new Day((int) $dateTime->format('d')),
         );
     }
 
