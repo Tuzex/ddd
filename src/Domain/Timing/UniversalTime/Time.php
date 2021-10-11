@@ -19,14 +19,10 @@ final class Time
 
     public static function by(DateTimeImmutable $dateTime): self
     {
-        $units = [
-            [Hour::class, 'H'],
-            [Minute::class, 'i'],
-            [Second::class, 's'],
-        ];
-
         return new self(
-            ...array_map(fn (array $unit) => new $unit[0]((int) $dateTime->format($unit[1])), $units)
+            new Hour((int) $dateTime->format('H')),
+            new Minute((int) $dateTime->format('i')),
+            new Second((int) $dateTime->format('s')),
         );
     }
 
