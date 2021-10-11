@@ -13,21 +13,21 @@ final class DomainEventsTest extends TestCase
     /**
      * @dataProvider provideDomainEvents
      */
-    public function testItCollectsDomainEvents(int $number, array $domainEvents): void
+    public function testItCollectsDomainEvents(int $count, array $domainEvents): void
     {
         DomainEvents::occur(...$domainEvents);
 
-        $this->assertCount($number, DomainEvents::release());
+        $this->assertCount($count, DomainEvents::release());
     }
 
     public function provideDomainEvents(): iterable
     {
         $domainEvent = $this->createMock(DomainEvent::class);
 
-        for ($n = 1; $n < 3; ++$n) {
+        for ($count = 1; $count > 0 && $count < 3; ++$count) {
             yield [
-                'number' => $n,
-                'domainEvents' => array_fill(0, $n, $domainEvent),
+                'count' => $count,
+                'domainEvents' => array_fill(0, $count, $domainEvent),
             ];
         }
     }

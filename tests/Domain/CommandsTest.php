@@ -13,21 +13,21 @@ final class CommandsTest extends TestCase
     /**
      * @dataProvider provideCommands
      */
-    public function testItCollectsCommands(int $number, array $domainCommands): void
+    public function testItCollectsCommands(int $count, array $commands): void
     {
-        Commands::issue(...$domainCommands);
+        Commands::issue(...$commands);
 
-        $this->assertCount($number, Commands::release());
+        $this->assertCount($count, Commands::release());
     }
 
     public function provideCommands(): iterable
     {
-        $domainCommand = $this->createMock(Command::class);
+        $command = $this->createMock(Command::class);
 
-        for ($n = 1; $n < 3; ++$n) {
+        for ($count = 1; $count > 0 && $count < 3; ++$count) {
             yield [
-                'number' => $n,
-                'domainCommands' => array_fill(0, $n, $domainCommand),
+                'count' => $count,
+                'commands' => array_fill(0, $count, $command),
             ];
         }
     }

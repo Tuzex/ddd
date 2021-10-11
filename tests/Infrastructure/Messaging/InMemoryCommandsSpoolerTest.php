@@ -15,33 +15,32 @@ final class InMemoryCommandsSpoolerTest extends TestCase
     /**
      * @dataProvider provideCommands
      */
-    public function testItSendsCommands(array $domainCommands): void
+    public function testItSendsCommands(int $count, array $commands): void
     {
-        Commands::issue(...$domainCommands);
+        Commands::issue(...$commands);
 
-        $domainCommandBus = $this->mockCommandBus(...$domainCommands);
+        $commandBus = $this->mockCommandBus($count);
 
-        $domainCommandSpooler = new InMemoryCommandsSpooler($domainCommandBus);
-        $domainCommandSpooler->send();
+        $commandSpooler = new InMemoryCommandsSpooler($commandBus);
+        $commandSpooler->send();
     }
 
     public function provideCommands(): iterable
     {
-        $domainCommand = $this->createMock(Command::class);
+        $command = $this->createMock(Command::class);
 
-        for ($n = 1; $n < 3; ++$n) {
+        for ($count = 1; $count > 0 && $count < 3; ++$count) {
             yield [
-                'domainCommands' => array_fill(0, $n, $domainCommand),
+                'count' => $count,
+                'commands' => array_fill(0, $count, $command),
             ];
         }
     }
 
-    private function mockCommandBus(Command ...$domainCommands): CommandBus
+    private function mockCommandBus(int $count): CommandBus
     {
-        $countOfCommands = count($domainCommands);
-
         $dispatcher = $this->createMock(CommandBus::class);
-        $dispatcher->expects($this->exactly($countOfCommands))
+        $dispatcher->expects($this->exactly($count))
             ->method('execute')
             ->with(
                 $this->createMock(Command::class)

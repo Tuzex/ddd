@@ -15,11 +15,11 @@ final class InMemoryDomainEventsEmitterTest extends TestCase
     /**
      * @dataProvider provideDomainEvents
      */
-    public function testItEmitsDomainEvents(array $domainEvents): void
+    public function testItEmitsDomainEvents(int $count, array $domainEvents): void
     {
         DomainEvents::occur(...$domainEvents);
 
-        $domainEventBus = $this->mockDomainEventBus(...$domainEvents);
+        $domainEventBus = $this->mockDomainEventBus($count);
 
         $domainEventEmitter = new InMemoryDomainEventsEmitter($domainEventBus);
         $domainEventEmitter->emit();
@@ -29,19 +29,18 @@ final class InMemoryDomainEventsEmitterTest extends TestCase
     {
         $domainEvent = $this->createMock(DomainEvent::class);
 
-        for ($n = 1; $n < 3; ++$n) {
+        for ($count = 1; $count > 0 && $count < 3; ++$count) {
             yield [
-                'domainEvents' => array_fill(0, $n, $domainEvent),
+                'count' => $count,
+                'domainEvents' => array_fill(0, $count, $domainEvent),
             ];
         }
     }
 
-    private function mockDomainEventBus(DomainEvent ...$domainEvents): DomainEventBus
+    private function mockDomainEventBus(int $count): DomainEventBus
     {
-        $countOfDomainEvents = count($domainEvents);
-
         $dispatcher = $this->createMock(DomainEventBus::class);
-        $dispatcher->expects($this->exactly($countOfDomainEvents))
+        $dispatcher->expects($this->exactly($count))
             ->method('publish')
             ->with(
                 $this->createMock(DomainEvent::class)
