@@ -15,9 +15,14 @@ final class DomainEventsTest extends TestCase
      */
     public function testItCollectsDomainEvents(int $count, array $domainEvents): void
     {
-        DomainEvents::occur(...$domainEvents);
+        $domainEvents = new DomainEvents(...$domainEvents);
 
-        $this->assertCount($count, DomainEvents::release());
+        $this->assertCount($count, $domainEvents);
+//        for ($loop = 1; $loop > 0 && $loop <= $count; ++$loop) {
+//            $this->assertEquals($loop--, $domainEvents->key());
+//            $this->assertTrue($domainEvents->valid());
+//            $this->assertInstanceOf(DomainEvent::class, $domainEvents->current());
+//        }
     }
 
     public function provideDomainEvents(): iterable

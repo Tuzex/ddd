@@ -4,20 +4,55 @@ declare(strict_types=1);
 
 namespace Tuzex\Ddd\Domain;
 
-final class DomainEvents
-{
-    private static array $domainEvents = [];
+use Countable;
+use Iterator;
+use LogicException;
 
-    public static function occur(DomainEvent ...$domainEvents): void
+/**
+ * @implements Iterator<int, DomainEvent>
+ */
+final class DomainEvents implements Countable, Iterator
+{
+    private array $domainEvents;
+
+    public function __construct(DomainEvent ...$domainEvents)
     {
-        self::$domainEvents = array_merge(self::$domainEvents, $domainEvents);
+        $this->domainEvents = $domainEvents;
+        $this->rewind();
     }
 
-    public static function release(): array
+    public function count(): int
     {
-        $domainEvents = self::$domainEvents;
-        self::$domainEvents = [];
+        return count($this->domainEvents);
+    }
 
-        return $domainEvents;
+    public function current(): DomainEvent
+    {
+        $domainEvent = current($this->domainEvents);
+        if (! $domainEvent instanceof DomainEvent) {
+            throw new LogicException(sprintf('Domain event must implement interface %s', DomainEvent::class));
+        }
+
+        return $domainEvent;
+    }
+
+    public function next(): void
+    {
+        next($this->domainEvents);
+    }
+
+    public function key(): int|string|null
+    {
+        return key($this->domainEvents);
+    }
+
+    public function valid(): bool
+    {
+        return null !== $this->key();
+    }
+
+    public function rewind(): void
+    {
+        reset($this->domainEvents);
     }
 }

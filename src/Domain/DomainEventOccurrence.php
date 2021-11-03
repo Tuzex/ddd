@@ -6,8 +6,21 @@ namespace Tuzex\Ddd\Domain;
 
 trait DomainEventOccurrence
 {
-    private function raiseDomainEvents(DomainEvent ...$domainEvents): void
+    /**
+     * @var array<int, DomainEvent>
+     */
+    private array $domainEvents = [];
+
+    public function domainEvents(): DomainEvents
     {
-        DomainEvents::occur(...$domainEvents);
+        $commands = new DomainEvents(...$this->domainEvents);
+        $this->domainEvents = [];
+
+        return $commands;
+    }
+
+    private function occur(DomainEvent ...$domainEvents): void
+    {
+        $this->domainEvents = array_merge($this->domainEvents, $domainEvents);
     }
 }

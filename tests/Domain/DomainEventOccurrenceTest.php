@@ -7,27 +7,26 @@ namespace Tuzex\Ddd\Test\Domain;
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\DomainEvent;
 use Tuzex\Ddd\Domain\DomainEventOccurrence;
-use Tuzex\Ddd\Domain\DomainEvents;
 
 final class DomainEventOccurrenceTest extends TestCase
 {
     /**
      * @dataProvider provideDomainEvents
      */
-    public function testItCollectsDomainEvents(array $domainEvents, int $numberOfDomainEvents): void
+    public function testItCollectsDomainEvents(array $domainEvents): void
     {
         $aggregate = new class() {
             use DomainEventOccurrence;
 
-            public function raise(DomainEvent ...$domainEvents): void
+            public function doChange(DomainEvent ...$domainEvents): void
             {
-                $this->raiseDomainEvents(...$domainEvents);
+                $this->occur(...$domainEvents);
             }
         };
 
-        $aggregate->raise(...$domainEvents);
+        $aggregate->doChange(...$domainEvents);
 
-        $this->assertCount($numberOfDomainEvents, DomainEvents::release());
+        $this->assertCount(count($domainEvents), $aggregate->domainEvents());
     }
 
     public function provideDomainEvents(): iterable
@@ -46,7 +45,6 @@ final class DomainEventOccurrenceTest extends TestCase
         foreach ($testCases as $useCase => $domainEvents) {
             yield $useCase => [
                 'domainEvents' => $domainEvents,
-                'numberOfDomainEvents' => count($domainEvents),
             ];
         }
     }
