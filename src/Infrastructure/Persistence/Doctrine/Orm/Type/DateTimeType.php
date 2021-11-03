@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Orm\Type;
 
 use DateTimeImmutable;
+use DateTimeZone;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\DateTimeImmutableType;
 use Tuzex\Ddd\Domain\Timing\DateTime;
@@ -17,9 +18,8 @@ final class DateTimeType extends DateTimeImmutableType
             return null;
         }
 
-        $dateTime = new DateTimeImmutable(
-            sprintf('@%s', $value->instant()->epochSeconds()->asNumber())
-        );
+        $dateTimeZone = new DateTimeZone('UTC');
+        $dateTime = new DateTimeImmutable(sprintf('@%s', $value->instant()->epochSeconds()->asNumber()), $dateTimeZone);
 
         return parent::convertToDatabaseValue($dateTime, $platform);
     }
