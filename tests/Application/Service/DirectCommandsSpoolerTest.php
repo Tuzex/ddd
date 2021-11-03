@@ -2,27 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Test\Infrastructure\Messaging;
+namespace Tuzex\Ddd\Test\Application\Service;
 
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Application\CommandBus;
+use Tuzex\Ddd\Application\Service\DirectCommandsSpooler;
 use Tuzex\Ddd\Domain\Command;
 use Tuzex\Ddd\Domain\Commands;
-use Tuzex\Ddd\Infrastructure\Messaging\InMemoryCommandsSpooler;
 
-final class InMemoryCommandsSpoolerTest extends TestCase
+final class DirectCommandsSpoolerTest extends TestCase
 {
     /**
      * @dataProvider provideCommands
      */
-    public function testItSendsCommands(int $count, array $commands): void
+    public function testItSendsCommands(int $count, Commands $commands): void
     {
-        Commands::issue(...$commands);
+        $commandsSpooler = new DirectCommandsSpooler(
+            $this->mockCommandBus($count)
+        );
 
-        $commandBus = $this->mockCommandBus($count);
-
-        $commandSpooler = new InMemoryCommandsSpooler($commandBus);
-        $commandSpooler->send();
+        $commandsSpooler->send($commands);
     }
 
     public function provideCommands(): iterable
@@ -32,20 +31,20 @@ final class InMemoryCommandsSpoolerTest extends TestCase
         for ($count = 1; $count > 0 && $count < 3; ++$count) {
             yield [
                 'count' => $count,
-                'commands' => array_fill(0, $count, $command),
+                'commands' => new Commands(...array_fill(0, $count, $command)),
             ];
         }
     }
 
     private function mockCommandBus(int $count): CommandBus
     {
-        $dispatcher = $this->createMock(CommandBus::class);
-        $dispatcher->expects($this->exactly($count))
+        $commandBus = $this->createMock(CommandBus::class);
+        $commandBus->expects($this->exactly($count))
             ->method('execute')
             ->with(
                 $this->createMock(Command::class)
             );
 
-        return $dispatcher;
+        return $commandBus;
     }
 }

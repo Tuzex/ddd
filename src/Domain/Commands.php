@@ -4,20 +4,55 @@ declare(strict_types=1);
 
 namespace Tuzex\Ddd\Domain;
 
-final class Commands
-{
-    private static array $domainCommands = [];
+use Countable;
+use Iterator;
+use LogicException;
 
-    public static function issue(Command ...$domainCommands): void
+/**
+ * @implements Iterator<int, Command>
+ */
+final class Commands implements Countable, Iterator
+{
+    private array $commands;
+
+    public function __construct(Command ...$commands)
     {
-        self::$domainCommands = array_merge(self::$domainCommands, $domainCommands);
+        $this->commands = $commands;
+        $this->rewind();
     }
 
-    public static function release(): array
+    public function count(): int
     {
-        $domainCommands = self::$domainCommands;
-        self::$domainCommands = [];
+        return count($this->commands);
+    }
 
-        return $domainCommands;
+    public function current(): Command
+    {
+        $command = current($this->commands);
+        if (! $command instanceof Command) {
+            throw new LogicException(sprintf('Domain event must implement interface %s', Command::class));
+        }
+
+        return $command;
+    }
+
+    public function next(): void
+    {
+        next($this->commands);
+    }
+
+    public function key(): int|string|null
+    {
+        return key($this->commands);
+    }
+
+    public function valid(): bool
+    {
+        return null !== $this->key();
+    }
+
+    public function rewind(): void
+    {
+        reset($this->commands);
     }
 }

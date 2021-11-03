@@ -6,8 +6,21 @@ namespace Tuzex\Ddd\Domain;
 
 trait CommandAbility
 {
-    private function issueCommand(Command $command): void
+    /**
+     * @var array<int, Command>
+     */
+    private array $commands = [];
+
+    public function commands(): Commands
     {
-        Commands::issue($command);
+        $commands = new Commands(...$this->commands);
+        $this->commands = [];
+
+        return $commands;
+    }
+
+    private function issue(Command ...$commands): void
+    {
+        $this->commands = array_merge($this->commands, $commands);
     }
 }

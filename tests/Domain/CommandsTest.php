@@ -15,9 +15,14 @@ final class CommandsTest extends TestCase
      */
     public function testItCollectsCommands(int $count, array $commands): void
     {
-        Commands::issue(...$commands);
+        $commands = new Commands(...$commands);
 
-        $this->assertCount($count, Commands::release());
+        $this->assertCount($count, $commands);
+//        for ($loop = 1; $loop > 0 && $loop <= $count; ++$loop) {
+//            $this->assertEquals($loop--, $commands->key());
+//            $this->assertTrue($commands->valid());
+//            $this->assertInstanceOf(Command::class, $commands->current());
+//        }
     }
 
     public function provideCommands(): iterable

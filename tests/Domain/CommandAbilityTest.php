@@ -7,24 +7,47 @@ namespace Tuzex\Ddd\Test\Domain;
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\Command;
 use Tuzex\Ddd\Domain\CommandAbility;
-use Tuzex\Ddd\Domain\Commands;
 
 final class CommandAbilityTest extends TestCase
 {
-    public function testItCollectsCommand(): void
+    /**
+     * @dataProvider provideCommands
+     */
+    public function testItCollectsCommand(array $commands): void
     {
-        $command = $this->createMock(Command::class);
         $processManager = new class() {
             use CommandAbility;
 
-            public function issue(Command $command): void
+            public function doChange(Command ...$commands): void
             {
-                $this->issueCommand($command);
+                foreach ($commands as $command) {
+                    $this->issue($command);
+                }
             }
         };
 
-        $processManager->issue($command);
+        $processManager->doChange(...$commands);
 
-        $this->assertCount(1, Commands::release());
+        $this->assertCount(count($commands), $processManager->commands());
+    }
+
+    public function provideCommands(): iterable
+    {
+        $command = $this->createMock(Command::class);
+        $testCases = [
+            'one' => [
+                $command,
+            ],
+            'two' => [
+                $command,
+                $command,
+            ],
+        ];
+
+        foreach ($testCases as $useCase => $commands) {
+            yield $useCase => [
+                'commands' => $commands,
+            ];
+        }
     }
 }
