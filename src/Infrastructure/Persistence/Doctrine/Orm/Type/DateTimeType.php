@@ -7,7 +7,7 @@ namespace Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Orm\Type;
 use DateTimeImmutable;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\DateTimeImmutableType;
-use Tuzex\Ddd\Domain\Timing\UniversalTime\DateTime;
+use Tuzex\Ddd\Domain\Timing\DateTime;
 
 final class DateTimeType extends DateTimeImmutableType
 {

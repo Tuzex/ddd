@@ -6,7 +6,7 @@ namespace Tuzex\Ddd\Test\Domain\Timing;
 
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\Timing\Instant;
-use Tuzex\Ddd\Domain\Timing\UniversalTime\TimePeriod\Seconds;
+use Tuzex\Ddd\Domain\Timing\Period\Seconds;
 
 final class InstantTest extends TestCase
 {

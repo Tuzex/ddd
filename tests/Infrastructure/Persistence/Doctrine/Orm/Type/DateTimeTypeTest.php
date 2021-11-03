@@ -8,7 +8,7 @@ use DateTimeImmutable;
 use DateTimeZone;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use PHPUnit\Framework\TestCase;
-use Tuzex\Ddd\Domain\Timing\UniversalTime\DateTime;
+use Tuzex\Ddd\Domain\Timing\DateTime;
 use Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Orm\Type\DateTimeType;
 
 final class DateTimeTypeTest extends TestCase

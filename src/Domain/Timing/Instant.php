@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tuzex\Ddd\Domain\Timing;
 
-use Tuzex\Ddd\Domain\Timing\UniversalTime\TimePeriod\Seconds;
+use Tuzex\Ddd\Domain\Timing\Period\Seconds;
 
 final class Instant
 {
