@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Infrastructure\Domain\Timing;
+namespace Tuzex\Ddd\Infrastructure\Domain\Timing\Clock;
 
 use Tuzex\Ddd\Domain\Timing\Clock;
 use Tuzex\Ddd\Domain\Timing\Instant;
@@ -16,8 +16,6 @@ final class SystemClock implements Clock
 
     public function instant(): Instant
     {
-        return Instant::of(
-            $this->timeService->measure()->getTimestamp()
-        );
+        return Instant::of($this->timeService->measure()->getTimestamp());
     }
 }

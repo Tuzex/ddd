@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Test\Infrastructure\Domain;
+namespace Tuzex\Ddd\Test\Infrastructure\Domain\Timing\Clock;
 
 use DateTimeImmutable;
 use DateTimeZone;
 use PHPUnit\Framework\TestCase;
-use Tuzex\Ddd\Infrastructure\Domain\Timing\SystemClock;
+use Tuzex\Ddd\Infrastructure\Domain\Timing\Clock\SystemClock;
 use Tuzex\Timekeeper\TimeService;
 
 final class SystemClockTest extends TestCase

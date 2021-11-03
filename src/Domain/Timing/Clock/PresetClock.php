@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\Timing;
+namespace Tuzex\Ddd\Domain\Timing\Clock;
 
 use DateTimeImmutable;
+use Tuzex\Ddd\Domain\Timing\Clock;
+use Tuzex\Ddd\Domain\Timing\Instant;
 
 final class PresetClock implements Clock
 {
