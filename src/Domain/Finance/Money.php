@@ -66,7 +66,7 @@ final class Money
 
     public function add(self $that): self
     {
-        if (!$this->comparable($that)) {
+        if (! $this->comparable($that)) {
             throw new MismatchCurrencies($this, $that);
         }
 
@@ -75,7 +75,7 @@ final class Money
 
     public function subtract(self $that): self
     {
-        if (!$this->comparable($that)) {
+        if (! $this->comparable($that)) {
             throw new MismatchCurrencies($this, $that);
         }
 
@@ -94,7 +94,7 @@ final class Money
 
     private function compare(self $that): int
     {
-        if (!$this->comparable($that)) {
+        if (! $this->comparable($that)) {
             throw new MismatchCurrencies($this, $that);
         }
 
