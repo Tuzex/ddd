@@ -6,7 +6,7 @@ namespace Tuzex\Ddd\Application\Service;
 
 use Tuzex\Ddd\Domain\Commands;
 
-interface CommandsSpooler
+interface CommandsDispatcher
 {
-    public function send(Commands $commands): void;
+    public function dispatch(Commands $commands): void;
 }

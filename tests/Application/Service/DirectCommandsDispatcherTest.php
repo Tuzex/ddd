@@ -6,22 +6,22 @@ namespace Tuzex\Ddd\Test\Application\Service;
 
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Application\CommandBus;
-use Tuzex\Ddd\Application\Service\DirectCommandsSpooler;
+use Tuzex\Ddd\Application\Service\DirectCommandsDispatcher;
 use Tuzex\Ddd\Domain\Command;
 use Tuzex\Ddd\Domain\Commands;
 
-final class DirectCommandsSpoolerTest extends TestCase
+final class DirectCommandsDispatcherTest extends TestCase
 {
     /**
      * @dataProvider provideCommands
      */
-    public function testItSendsCommands(int $count, Commands $commands): void
+    public function testItDispatchesCommands(int $count, Commands $commands): void
     {
-        $commandsSpooler = new DirectCommandsSpooler(
+        $commandsDispatch = new DirectCommandsDispatcher(
             $this->mockCommandBus($count)
         );
 
-        $commandsSpooler->send($commands);
+        $commandsDispatch->dispatch($commands);
     }
 
     public function provideCommands(): iterable
