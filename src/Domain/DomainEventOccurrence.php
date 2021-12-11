@@ -7,7 +7,7 @@ namespace Tuzex\Ddd\Domain;
 trait DomainEventOccurrence
 {
     /**
-     * @var array<int, DomainEvent>
+     * @var array<int|string, DomainEvent>
      */
     private array $domainEvents = [];
 

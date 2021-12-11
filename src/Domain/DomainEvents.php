@@ -9,7 +9,7 @@ use Iterator;
 use LogicException;
 
 /**
- * @implements Iterator<int, DomainEvent>
+ * @implements Iterator<int|string, DomainEvent>
  */
 final class DomainEvents implements Countable, Iterator
 {
