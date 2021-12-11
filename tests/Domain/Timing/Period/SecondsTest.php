@@ -19,7 +19,7 @@ final class SecondsTest extends PeriodTest
         $days = new Days($numberOfDays);
         $seconds = Seconds::fromDays($days);
 
-        $this->assertSame($numberOfDays * 24 * 60 * 60, $seconds->asNumber());
+        $this->assertSame($numberOfDays * 24 * 60 * 60, $seconds->value);
     }
 
     public function testItCreatesFromHours(): void
@@ -29,7 +29,7 @@ final class SecondsTest extends PeriodTest
         $hours = new Hours($numberOfHours);
         $seconds = Seconds::fromHours($hours);
 
-        $this->assertSame($numberOfHours * 60 * 60, $seconds->asNumber());
+        $this->assertSame($numberOfHours * 60 * 60, $seconds->value);
     }
 
     public function testItCreatesFromMinutes(): void
@@ -39,7 +39,7 @@ final class SecondsTest extends PeriodTest
         $minutes = new Minutes($numberOfMinutes);
         $seconds = Seconds::fromMinutes($minutes);
 
-        $this->assertSame($numberOfMinutes * 60, $seconds->asNumber());
+        $this->assertSame($numberOfMinutes * 60, $seconds->value);
     }
 
     /**
@@ -66,7 +66,7 @@ final class SecondsTest extends PeriodTest
      */
     public function testItIncreases(Seconds $origin, Seconds $another, int $result): void
     {
-        $this->assertSame($result, $origin->increase($another)->asNumber());
+        $this->assertSame($result, $origin->increase($another)->value);
     }
 
     public function provideDataForIncreasing(): iterable
@@ -86,7 +86,7 @@ final class SecondsTest extends PeriodTest
      */
     public function testItDecreases(Seconds $origin, Seconds $another, int $result): void
     {
-        $this->assertSame($result, $origin->decrease($another)->asNumber());
+        $this->assertSame($result, $origin->decrease($another)->value);
     }
 
     public function provideDataForDecreasing(): iterable
@@ -106,7 +106,7 @@ final class SecondsTest extends PeriodTest
         $origin = new Seconds(100);
         $another = new Seconds(50);
 
-        $this->assertSame(150, $origin->increase($another)->asNumber());
+        $this->assertSame(150, $origin->increase($another)->value);
     }
 
     public function provideDataForEquality(): array

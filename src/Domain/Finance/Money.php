@@ -103,21 +103,21 @@ final class Money
 
     private function sum(NominalValue $that): int
     {
-        return $this->nominalValue->subValue() + $that->subValue();
+        return $this->nominalValue->subValue + $that->subValue;
     }
 
     private function diff(NominalValue $that): int
     {
-        return $this->nominalValue->subValue() - $that->subValue();
+        return $this->nominalValue->subValue - $that->subValue;
     }
 
     private function product(int | float $factor): int
     {
-        return intval(round($this->nominalValue->subValue() * $factor, 0));
+        return intval(round($this->nominalValue->subValue * $factor, 0));
     }
 
     private function quotient(int | float $divisor): int
     {
-        return intval(round($this->nominalValue->subValue() / $divisor, 0));
+        return intval(round($this->nominalValue->subValue / $divisor, 0));
     }
 }

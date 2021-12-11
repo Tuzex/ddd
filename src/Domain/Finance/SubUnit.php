@@ -9,9 +9,9 @@ use Webmozart\Assert\Assert;
 final class SubUnit
 {
     public function __construct(
-        private string $code,
-        private string $symbol,
-        private int $fraction,
+        public readonly string $code,
+        public readonly string $symbol,
+        public readonly int $fraction,
     ) {
         Assert::notEmpty($this->code);
         Assert::notEmpty($this->symbol);
@@ -25,25 +25,8 @@ final class SubUnit
             && $that->fraction === $this->fraction;
     }
 
-    public function code(): string
-    {
-        return $this->code;
-    }
-
-    public function symbol(): string
-    {
-        return $this->symbol;
-    }
-
-    public function fraction(): int
-    {
-        return $this->fraction;
-    }
-
     public function precision(): int
     {
-        return intval(
-            log10($this->fraction)
-        );
+        return intval(log10($this->fraction));
     }
 }

@@ -37,7 +37,7 @@ abstract class UnitTest extends TestCase
      */
     public function testItReturnsValidNumber(Unit $unit, int $number): void
     {
-        $this->assertSame($number, $unit->asNumber());
+        $this->assertSame($number, $unit->value);
     }
 
     abstract public function provideData(): array;

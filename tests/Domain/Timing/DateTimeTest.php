@@ -22,7 +22,7 @@ final class DateTimeTest extends TestCase
     {
         $dateTime = DateTime::asOf($this->mockClock());
 
-        $this->assertSame(self::PRESENT, $dateTime->instant()->epochSeconds()->asNumber());
+        $this->assertSame(self::PRESENT, $dateTime->instant()->epochSeconds->value);
     }
 
     public function testItCreatesFromAnotherDateTime(): void
@@ -31,7 +31,7 @@ final class DateTimeTest extends TestCase
             DateTime::asOf($this->mockClock())
         );
 
-        $this->assertSame(self::PRESENT, $origin->instant()->epochSeconds()->asNumber());
+        $this->assertSame(self::PRESENT, $origin->instant()->epochSeconds->value);
     }
 
     /**
@@ -41,7 +41,7 @@ final class DateTimeTest extends TestCase
     {
         $dateTime = DateTime::by($present);
 
-        $this->assertSame(self::PRESENT, $dateTime->instant()->epochSeconds()->asNumber());
+        $this->assertSame(self::PRESENT, $dateTime->instant()->epochSeconds->value);
     }
 
     public function provideNativeDateTime(): array
@@ -202,7 +202,7 @@ final class DateTimeTest extends TestCase
     {
         $modified = $origin->modify($modifier);
 
-        $this->assertSame($result, $modified->instant()->epochSeconds()->asNumber());
+        $this->assertSame($result, $modified->instant()->epochSeconds->value);
     }
 
     public function provideDataForModification(): iterable
@@ -235,12 +235,12 @@ final class DateTimeTest extends TestCase
         $this->assertSame(
             $present->format('Y-m-d H:i:s'),
             vsprintf('%s-%02d-%02d %02d:%02d:%02d', [
-                $date->year()->asNumber(),
-                $date->month()->asNumber(),
-                $date->day()->asNumber(),
-                $time->hour()->asNumber(),
-                $time->minute()->asNumber(),
-                $time->second()->asNumber(),
+                $date->year->value,
+                $date->month->value,
+                $date->day->value,
+                $time->hour->value,
+                $time->minute->value,
+                $time->second->value,
             ])
         );
     }

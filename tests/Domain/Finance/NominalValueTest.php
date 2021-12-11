@@ -19,8 +19,8 @@ final class NominalValueTest extends TestCase
     {
         $nominalValue = new NominalValue($sub, $fraction);
 
-        $this->assertSame($sub, $nominalValue->subValue());
-        $this->assertSame($main, $nominalValue->mainValue());
+        $this->assertSame($sub, $nominalValue->subValue);
+        $this->assertSame($main, $nominalValue->mainValue);
     }
 
     public function provideDataForCreation(): array
@@ -79,8 +79,8 @@ final class NominalValueTest extends TestCase
     {
         $nominalValue = NominalValue::set($sub, $currency);
 
-        $this->assertSame($sub, $nominalValue->subValue());
-        $this->assertSame($main, $nominalValue->mainValue());
+        $this->assertSame($sub, $nominalValue->subValue);
+        $this->assertSame($main, $nominalValue->mainValue);
     }
 
     public function provideDataForFactory(): array

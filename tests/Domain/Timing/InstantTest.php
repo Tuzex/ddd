@@ -15,7 +15,7 @@ final class InstantTest extends TestCase
         $seconds = new Seconds(time());
         $instant = new Instant($seconds);
 
-        $this->assertSame($seconds, $instant->epochSeconds());
+        $this->assertSame($seconds, $instant->epochSeconds);
     }
 
     public function testItCreatesFromTimeStamp(): void
@@ -23,7 +23,7 @@ final class InstantTest extends TestCase
         $seconds = time();
         $instant = Instant::of($seconds);
 
-        $this->assertSame($seconds, $instant->epochSeconds()->asNumber());
+        $this->assertSame($seconds, $instant->epochSeconds->value);
     }
 
     /**
@@ -76,7 +76,7 @@ final class InstantTest extends TestCase
     {
         $shifted = $origin->shift($shift);
 
-        $this->assertSame($result, $shifted->epochSeconds()->asNumber());
+        $this->assertSame($result, $shifted->epochSeconds->value);
     }
 
     public function provideDataForTimeShifting(): iterable
@@ -101,7 +101,7 @@ final class InstantTest extends TestCase
      */
     public function testItDifferencesTimePoint(Instant $origin, Instant $another, int $result): void
     {
-        $this->assertSame($result, $origin->delta($another)->asNumber());
+        $this->assertSame($result, $origin->delta($another)->value);
     }
 
     public function provideDataForTimeDifferentiation(): iterable

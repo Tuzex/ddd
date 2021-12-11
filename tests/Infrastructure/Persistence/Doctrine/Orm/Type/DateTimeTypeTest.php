@@ -50,7 +50,7 @@ final class DateTimeTypeTest extends TestCase
         $dateTimeType = new DateTimeType();
         $domainDateTime = $dateTimeType->convertToPHPValue($dateTime, $this->mockPlatform());
 
-        $this->assertSame($result, $domainDateTime?->instant()->epochSeconds()->asNumber());
+        $this->assertSame($result, $domainDateTime?->instant()->epochSeconds->value);
     }
 
     public function provideDataForDomain(): array

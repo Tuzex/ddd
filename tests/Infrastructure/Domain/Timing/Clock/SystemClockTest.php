@@ -24,6 +24,6 @@ final class SystemClockTest extends TestCase
         $clock = new SystemClock($timeService);
         $instant = $clock->instant();
 
-        $this->assertSame($dateTime->getTimestamp(), $instant->epochSeconds()->asNumber());
+        $this->assertSame($dateTime->getTimestamp(), $instant->epochSeconds->value);
     }
 }

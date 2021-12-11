@@ -23,7 +23,7 @@ final class TimeTest extends TestCase
         );
 
         foreach ($this->structure as $type => $format) {
-            $this->assertSame((int) $dateTime->format($format), $time->{$type}()->asNumber());
+            $this->assertSame((int) $dateTime->format($format), $time->{$type}->value);
         }
     }
 }

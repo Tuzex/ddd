@@ -14,11 +14,11 @@ use Tuzex\Ddd\Domain\Timing\Unit\Year;
 final class Date
 {
     public function __construct(
-        private Year $year,
-        private Month $month,
-        private Week $week,
-        private DayOfWeek $dayOfWeek,
-        private Day $day,
+        public readonly Year $year,
+        public readonly Month $month,
+        public readonly Week $week,
+        public readonly DayOfWeek $dayOfWeek,
+        public readonly Day $day,
     ) {}
 
     public static function by(DateTimeImmutable $dateTime): self
@@ -30,30 +30,5 @@ final class Date
             new DayOfWeek((int) $dateTime->format('N')),
             new Day((int) $dateTime->format('d')),
         );
-    }
-
-    public function year(): Year
-    {
-        return $this->year;
-    }
-
-    public function month(): Month
-    {
-        return $this->month;
-    }
-
-    public function week(): Week
-    {
-        return $this->week;
-    }
-
-    public function dayOfWeek(): DayOfWeek
-    {
-        return $this->dayOfWeek;
-    }
-
-    public function day(): Day
-    {
-        return $this->day;
     }
 }

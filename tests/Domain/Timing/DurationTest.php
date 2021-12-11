@@ -13,28 +13,28 @@ final class DurationTest extends TestCase
     {
         $duration = Duration::inDays(1);
 
-        $this->assertSame(86400, $duration->length()->asNumber());
+        $this->assertSame(86400, $duration->length()->value);
     }
 
     public function testItCreatesFromHours(): void
     {
         $duration = Duration::inHours(20);
 
-        $this->assertSame(72000, $duration->length()->asNumber());
+        $this->assertSame(72000, $duration->length()->value);
     }
 
     public function testItCreatesFromMinutes(): void
     {
         $duration = Duration::inMinutes(3600);
 
-        $this->assertSame(216000, $duration->length()->asNumber());
+        $this->assertSame(216000, $duration->length()->value);
     }
 
     public function testItCreatesFromSeconds(): void
     {
         $duration = Duration::inSeconds(86400);
 
-        $this->assertSame(86400, $duration->length()->asNumber());
+        $this->assertSame(86400, $duration->length()->value);
     }
 
     /**
@@ -142,12 +142,12 @@ final class DurationTest extends TestCase
      */
     public function testItReturnsValidTimePeriods(Duration $duration, array $periods): void
     {
-        $this->assertSame($periods['seconds'], $duration->length()->asNumber());
+        $this->assertSame($periods['seconds'], $duration->length()->value);
 
-        $this->assertSame($periods['days'], $duration->days()->asNumber());
-        $this->assertSame($periods['hours'], $duration->hours()->asNumber());
-        $this->assertSame($periods['minutes'], $duration->minutes()->asNumber());
-        $this->assertSame($periods['seconds'], $duration->seconds()->asNumber());
+        $this->assertSame($periods['days'], $duration->days()->value);
+        $this->assertSame($periods['hours'], $duration->hours()->value);
+        $this->assertSame($periods['minutes'], $duration->minutes()->value);
+        $this->assertSame($periods['seconds'], $duration->seconds->value);
     }
 
     public function provideTimePeriods(): iterable
@@ -175,8 +175,8 @@ final class DurationTest extends TestCase
      */
     public function testItReturnsValidTimeShifts(Duration $duration, array $shitfs): void
     {
-        $this->assertSame($shitfs['forward'], $duration->forward()->asNumber());
-        $this->assertSame($shitfs['backward'], $duration->backward()->asNumber());
+        $this->assertSame($shitfs['forward'], $duration->forward()->value);
+        $this->assertSame($shitfs['backward'], $duration->backward()->value);
     }
 
     public function provideTimeShifts(): iterable

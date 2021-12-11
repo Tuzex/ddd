@@ -17,9 +17,9 @@ final class SubUnitTest extends TestCase
     {
         $subUnit = new SubUnit($code, $symbol, $fraction);
 
-        $this->assertSame($code, $subUnit->code());
-        $this->assertSame($symbol, $subUnit->symbol());
-        $this->assertSame($fraction, $subUnit->fraction());
+        $this->assertSame($code, $subUnit->code);
+        $this->assertSame($symbol, $subUnit->symbol);
+        $this->assertSame($fraction, $subUnit->fraction);
     }
 
     public function provideValidCurrencies(): array

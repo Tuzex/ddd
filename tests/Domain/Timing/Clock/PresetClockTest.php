@@ -18,6 +18,6 @@ final class PresetClockTest extends TestCase
         $clock = new PresetClock($dateTime);
         $instant = $clock->instant();
 
-        $this->assertSame($timeStamp, $instant->epochSeconds()->asNumber());
+        $this->assertSame($timeStamp, $instant->epochSeconds->value);
     }
 }

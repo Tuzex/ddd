@@ -6,13 +6,13 @@ namespace Tuzex\Ddd\Domain\Finance;
 
 final class NominalValue
 {
-    private float $main;
-    private int $sub;
+    public readonly float $mainValue;
+    public readonly int $subValue;
 
-    public function __construct(int $sub, int $fraction)
+    public function __construct(int $subValue, int $fraction)
     {
-        $this->main = floatval($sub / $fraction);
-        $this->sub = $sub;
+        $this->mainValue = floatval($subValue / $fraction);
+        $this->subValue = $subValue;
     }
 
     public static function set(int $value, Currency $currency): self
@@ -22,21 +22,11 @@ final class NominalValue
 
     public function equals(self $that): bool
     {
-        return $that->main === $this->main && $that->sub === $this->sub;
+        return $that->mainValue === $this->mainValue && $that->subValue === $this->subValue;
     }
 
     public function compare(self $that): int
     {
-        return $this->sub <=> $that->sub;
-    }
-
-    public function mainValue(): float
-    {
-        return $this->main;
-    }
-
-    public function subValue(): int
-    {
-        return $this->sub;
+        return $this->subValue <=> $that->subValue;
     }
 }

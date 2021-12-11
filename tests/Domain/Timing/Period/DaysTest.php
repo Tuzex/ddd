@@ -17,7 +17,7 @@ final class DaysTest extends TestCase
     {
         $days = Days::fromSeconds($seconds);
 
-        $this->assertSame($numberOfDays, $days->asNumber());
+        $this->assertSame($numberOfDays, $days->value);
     }
 
     public function provideDateForCreation(): array

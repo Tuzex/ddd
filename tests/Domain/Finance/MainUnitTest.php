@@ -17,8 +17,8 @@ final class MainUnitTest extends TestCase
     {
         $mainUnit = new MainUnit($code, $symbol);
 
-        $this->assertSame($code, $mainUnit->code());
-        $this->assertSame($symbol, $mainUnit->symbol());
+        $this->assertSame($code, $mainUnit->code);
+        $this->assertSame($symbol, $mainUnit->symbol);
     }
 
     public function provideValidCurrencies(): array

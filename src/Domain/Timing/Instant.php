@@ -9,7 +9,7 @@ use Tuzex\Ddd\Domain\Timing\Period\Seconds;
 final class Instant
 {
     public function __construct(
-        private Seconds $epochSeconds
+        public readonly Seconds $epochSeconds
     ) {}
 
     public static function of(int $epochSeconds): self
@@ -39,10 +39,5 @@ final class Instant
     public function delta(self $that): Seconds
     {
         return $this->epochSeconds->decrease($that->epochSeconds->absolute());
-    }
-
-    public function epochSeconds(): Seconds
-    {
-        return $this->epochSeconds;
     }
 }

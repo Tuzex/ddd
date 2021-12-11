@@ -18,12 +18,12 @@ abstract class Currency
 
     public function isoCode(): string
     {
-        return $this->mainUnit->code();
+        return $this->mainUnit->code;
     }
 
     public function fraction(): int
     {
-        return $this->subUnit->fraction();
+        return $this->subUnit->fraction;
     }
 
     public function precision(): int

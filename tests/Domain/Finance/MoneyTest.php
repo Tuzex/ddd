@@ -171,7 +171,7 @@ final class MoneyTest extends TestCase
      */
     public function testItAddsUpMonies(Money $term, Money $addend, float $sum): void
     {
-        $this->assertSame($sum, $term->add($addend)->nominal()->mainValue());
+        $this->assertSame($sum, $term->add($addend)->nominal()->mainValue);
     }
 
     public function provideDataForAddition(): iterable
@@ -191,7 +191,7 @@ final class MoneyTest extends TestCase
      */
     public function testItSubtractsMonies(Money $minuend, Money $subtrahend, float $difference): void
     {
-        $this->assertSame($difference, $minuend->subtract($subtrahend)->nominal()->mainValue());
+        $this->assertSame($difference, $minuend->subtract($subtrahend)->nominal()->mainValue);
     }
 
     public function provideDataForSubtraction(): iterable
@@ -211,7 +211,7 @@ final class MoneyTest extends TestCase
      */
     public function testItMultipliesMonies(Money $multiplier, float $multiplicand, float $product): void
     {
-        $this->assertSame($product, $multiplier->multiply($multiplicand)->nominal()->mainValue());
+        $this->assertSame($product, $multiplier->multiply($multiplicand)->nominal()->mainValue);
     }
 
     public function provideDataForMultiplication(): iterable
@@ -231,7 +231,7 @@ final class MoneyTest extends TestCase
      */
     public function testItDivisionsMonies(Money $dividend, float $divisor, float $quotient): void
     {
-        $this->assertSame($quotient, $dividend->divide($divisor)->nominal()->mainValue());
+        $this->assertSame($quotient, $dividend->divide($divisor)->nominal()->mainValue);
     }
 
     public function provideDataForDivision(): iterable

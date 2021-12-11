@@ -98,6 +98,6 @@ final class DateTime
 
     private function asNative(): DateTimeImmutable
     {
-        return new DateTimeImmutable(sprintf('@%s', $this->instant->epochSeconds()->asNumber()), new DateTimeZone('UTC'));
+        return new DateTimeImmutable(sprintf('@%s', $this->instant->epochSeconds->value), new DateTimeZone('UTC'));
     }
 }

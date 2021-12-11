@@ -19,7 +19,7 @@ final class DateTimeType extends DateTimeImmutableType
         }
 
         $dateTimeZone = new DateTimeZone('UTC');
-        $dateTime = new DateTimeImmutable(sprintf('@%s', $value->instant()->epochSeconds()->asNumber()), $dateTimeZone);
+        $dateTime = new DateTimeImmutable(sprintf('@%s', $value->instant()->epochSeconds->value), $dateTimeZone);
 
         return parent::convertToDatabaseValue($dateTime, $platform);
     }

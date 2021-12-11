@@ -12,7 +12,7 @@ use Tuzex\Ddd\Domain\Timing\Period\Seconds;
 final class Duration
 {
     public function __construct(
-        private Seconds $seconds
+        public readonly Seconds $seconds
     ) {}
 
     public static function inDays(int $days): self
@@ -88,10 +88,5 @@ final class Duration
     public function minutes(): Minutes
     {
         return Minutes::fromSeconds($this->seconds);
-    }
-
-    public function seconds(): Seconds
-    {
-        return $this->seconds;
     }
 }

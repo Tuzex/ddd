@@ -7,16 +7,11 @@ namespace Tuzex\Ddd\Domain\Timing;
 abstract class Unit
 {
     public function __construct(
-        private int $value
+        public readonly int $value
     ) {}
 
     public function equals(self $that): bool
     {
         return $this::class === $that::class && $that->value === $this->value;
-    }
-
-    public function asNumber(): int
-    {
-        return $this->value;
     }
 }

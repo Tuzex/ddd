@@ -17,7 +17,7 @@ final class MinutesTest extends TestCase
     {
         $minutes = Minutes::fromSeconds($seconds);
 
-        $this->assertSame($numberOfMinutes, $minutes->asNumber());
+        $this->assertSame($numberOfMinutes, $minutes->value);
     }
 
     public function provideDateForCreation(): array

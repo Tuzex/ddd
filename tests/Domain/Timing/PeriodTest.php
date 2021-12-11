@@ -47,10 +47,10 @@ abstract class PeriodTest extends TestCase
         $positiveNumber = abs($number);
         $negativeNumber = abs($number) * -1;
 
-        $this->assertSame($number, $period->asNumber());
+        $this->assertSame($number, $period->value);
 
-        $this->assertSame($positiveNumber, $period->absolute()->asNumber());
-        $this->assertSame($negativeNumber, $period->negated()->asNumber());
+        $this->assertSame($positiveNumber, $period->absolute()->value);
+        $this->assertSame($negativeNumber, $period->negated()->value);
     }
 
     abstract public function provideData(): array;

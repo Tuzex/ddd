@@ -9,8 +9,8 @@ use Webmozart\Assert\Assert;
 final class MainUnit
 {
     public function __construct(
-        private string $code,
-        private string $symbol,
+        public readonly string $code,
+        public readonly string $symbol,
     ) {
         Assert::regex($this->code, '/^[A-Z]{3}$/');
         Assert::notEmpty($this->symbol);
@@ -18,16 +18,7 @@ final class MainUnit
 
     public function equals(self $that): bool
     {
-        return $that->code === $this->code && $that->symbol === $this->symbol;
-    }
-
-    public function code(): string
-    {
-        return $this->code;
-    }
-
-    public function symbol(): string
-    {
-        return $this->symbol;
+        return $that->code === $this->code
+            && $that->symbol === $this->symbol;
     }
 }

@@ -25,7 +25,7 @@ final class DateTest extends TestCase
         );
 
         foreach ($this->structure as $type => $format) {
-            $this->assertSame((int) $dateTime->format($format), $date->{$type}()->asNumber());
+            $this->assertSame((int) $dateTime->format($format), $date->{$type}->value);
         }
     }
 }
