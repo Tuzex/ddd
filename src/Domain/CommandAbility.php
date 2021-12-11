@@ -7,7 +7,7 @@ namespace Tuzex\Ddd\Domain;
 trait CommandAbility
 {
     /**
-     * @var array<int, Command>
+     * @var array<int|string, Command>
      */
     private array $commands = [];
 

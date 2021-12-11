@@ -9,7 +9,7 @@ use Iterator;
 use LogicException;
 
 /**
- * @implements Iterator<int, Command>
+ * @implements Iterator<int|string, Command>
  */
 final class Commands implements Countable, Iterator
 {
