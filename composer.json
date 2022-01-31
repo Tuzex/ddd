@@ -1,6 +1,6 @@
 {
   "name": "tuzex/ddd",
-  "description": "A lightweight library for DDD (Domain Driven Design) project in PHP",
+  "description": "A lightweight library for Domain Driven Design (DDD) project in PHP",
   "type": "library",
   "license": "MIT",
   "authors": [
