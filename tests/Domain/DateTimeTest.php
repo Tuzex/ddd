@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Test\Timing\Domain;
+namespace Tuzex\Ddd\Test\Domain;
 
 use DateTimeImmutable;
 use DateTimeZone;
 use PHPUnit\Framework\TestCase;
-use Tuzex\Ddd\Timing\Domain\Clock;
-use Tuzex\Ddd\Timing\Domain\DateTime;
-use Tuzex\Ddd\Timing\Domain\Instant;
-use Tuzex\Ddd\Timing\Domain\Period\Seconds;
+use Tuzex\Ddd\Domain\Clock;
+use Tuzex\Ddd\Domain\DateTime;
+use Tuzex\Ddd\Domain\DateTime\Period\Seconds;
+use Tuzex\Ddd\Domain\Instant;
 
 final class DateTimeTest extends TestCase
 {
@@ -20,18 +20,18 @@ final class DateTimeTest extends TestCase
 
     public function testItCreatesFromClock(): void
     {
-        $dateTime = DateTime::asOf($this->mockClock());
+        $dateTime = \Tuzex\Ddd\Domain\DateTime::asOf($this->mockClock());
 
-        $this->assertSame(self::PRESENT, $dateTime->instant()->epochSeconds->value);
+        $this->assertSame(self::PRESENT, $dateTime->instant->epochSeconds->value);
     }
 
     public function testItCreatesFromAnotherDateTime(): void
     {
-        $origin = DateTime::sinceThen(
-            DateTime::asOf($this->mockClock())
+        $origin = \Tuzex\Ddd\Domain\DateTime::sinceThen(
+            \Tuzex\Ddd\Domain\DateTime::asOf($this->mockClock())
         );
 
-        $this->assertSame(self::PRESENT, $origin->instant()->epochSeconds->value);
+        $this->assertSame(self::PRESENT, $origin->instant->epochSeconds->value);
     }
 
     /**
@@ -39,9 +39,9 @@ final class DateTimeTest extends TestCase
      */
     public function testItReturnsValidInstant(DateTimeImmutable $present): void
     {
-        $dateTime = DateTime::by($present);
+        $dateTime = \Tuzex\Ddd\Domain\DateTime::by($present);
 
-        $this->assertSame(self::PRESENT, $dateTime->instant()->epochSeconds->value);
+        $this->assertSame(self::PRESENT, $dateTime->instant->epochSeconds->value);
     }
 
     public function provideNativeDateTime(): array
@@ -54,7 +54,7 @@ final class DateTimeTest extends TestCase
     /**
      * @dataProvider provideDataForEquality
      */
-    public function testItIsEqual(DateTime $origin, DateTime $another, bool $result): void
+    public function testItIsEqual(DateTime $origin, \Tuzex\Ddd\Domain\DateTime $another, bool $result): void
     {
         $this->assertSame($result, $origin->equals($another));
     }
@@ -68,8 +68,8 @@ final class DateTimeTest extends TestCase
 
         foreach ($circumstances as $type => $data) {
             yield $type => [
-                'origin' => new DateTime(Instant::of($data[0])),
-                'another' => new DateTime(Instant::of($data[1])),
+                'origin' => new \Tuzex\Ddd\Domain\DateTime(\Tuzex\Ddd\Domain\Instant::of($data[0])),
+                'another' => new \Tuzex\Ddd\Domain\DateTime(\Tuzex\Ddd\Domain\Instant::of($data[1])),
                 'result' => $data[2],
             ];
         }
@@ -78,7 +78,7 @@ final class DateTimeTest extends TestCase
     /**
      * @dataProvider provideDataForComparisonLaterThan
      */
-    public function testItIsLaterThan(DateTime $origin, DateTime $another, bool $result): void
+    public function testItIsLaterThan(\Tuzex\Ddd\Domain\DateTime $origin, \Tuzex\Ddd\Domain\DateTime $another, bool $result): void
     {
         $this->assertSame($result, $origin->laterThan($another));
     }
@@ -97,7 +97,7 @@ final class DateTimeTest extends TestCase
     /**
      * @dataProvider provideDataForComparisonLaterThanOrEqualTo
      */
-    public function testItIsLaterThanOrEqualTo(DateTime $origin, DateTime $another, bool $result): void
+    public function testItIsLaterThanOrEqualTo(\Tuzex\Ddd\Domain\DateTime $origin, \Tuzex\Ddd\Domain\DateTime $another, bool $result): void
     {
         $this->assertSame($result, $origin->laterThanOrEqualTo($another));
     }
@@ -135,7 +135,7 @@ final class DateTimeTest extends TestCase
     /**
      * @dataProvider provideDataForComparisonEarlierThanOrEqualTo
      */
-    public function testItIsEarlierThanOrEqualTo(DateTime $origin, DateTime $another, bool $result): void
+    public function testItIsEarlierThanOrEqualTo(\Tuzex\Ddd\Domain\DateTime $origin, DateTime $another, bool $result): void
     {
         $this->assertSame($result, $origin->earlierThanOrEqualTo($another));
     }
@@ -154,7 +154,7 @@ final class DateTimeTest extends TestCase
     /**
      * @dataProvider provideDataForComparisonInclusiveBetween
      */
-    public function testItIsBetweenInclusive(DateTime $origin, DateTime $start, DateTime $end, bool $result): void
+    public function testItIsBetweenInclusive(\Tuzex\Ddd\Domain\DateTime $origin, \Tuzex\Ddd\Domain\DateTime $start, \Tuzex\Ddd\Domain\DateTime $end, bool $result): void
     {
         $this->assertSame($result, $origin->isBetweenInclusive($start, $end));
     }
@@ -176,7 +176,7 @@ final class DateTimeTest extends TestCase
     /**
      * @dataProvider provideDataForComparisonExclusiveBetween
      */
-    public function testItIsBetweenExclusive(DateTime $origin, DateTime $start, DateTime $end, bool $result): void
+    public function testItIsBetweenExclusive(\Tuzex\Ddd\Domain\DateTime $origin, \Tuzex\Ddd\Domain\DateTime $start, DateTime $end, bool $result): void
     {
         $this->assertSame($result, $origin->isBetweenExclusive($start, $end));
     }
@@ -198,16 +198,16 @@ final class DateTimeTest extends TestCase
     /**
      * @dataProvider provideDataForModification
      */
-    public function testItModifies(DateTime $origin, Seconds $modifier, int $result): void
+    public function testItModifies(\Tuzex\Ddd\Domain\DateTime $origin, Seconds $modifier, int $result): void
     {
         $modified = $origin->modify($modifier);
 
-        $this->assertSame($result, $modified->instant()->epochSeconds->value);
+        $this->assertSame($result, $modified->instant->epochSeconds->value);
     }
 
     public function provideDataForModification(): iterable
     {
-        $present = Instant::of(self::PRESENT);
+        $present = \Tuzex\Ddd\Domain\Instant::of(self::PRESENT);
         $circumstances = [
             'to-the-future' => [$present, 11253251, 1629147357],
             'to-the-past' => [$present, -11253251, 1606640855],
@@ -250,7 +250,7 @@ final class DateTimeTest extends TestCase
      */
     public function testItReturnsValidIsoFormatedDateTime(DateTimeImmutable $present): void
     {
-        $dateTime = DateTime::by($present);
+        $dateTime = \Tuzex\Ddd\Domain\DateTime::by($present);
 
         $this->assertMatchesRegularExpression('/^(\d{4}-\d{2}-\d{2})[A-Z]+(\d{2}:\d{2}:\d{2}).([0-9+-:]+)$/', $dateTime->iso6801());
     }
@@ -265,8 +265,8 @@ final class DateTimeTest extends TestCase
 
         foreach ($circumstances as $type => $data) {
             yield $type => [
-                'origin' => new DateTime(Instant::of($data[0])),
-                'another' => new DateTime(Instant::of($data[1])),
+                'origin' => new \Tuzex\Ddd\Domain\DateTime(\Tuzex\Ddd\Domain\Instant::of($data[0])),
+                'another' => new \Tuzex\Ddd\Domain\DateTime(\Tuzex\Ddd\Domain\Instant::of($data[1])),
                 'result' => $results[$type],
             ];
         }
@@ -285,21 +285,21 @@ final class DateTimeTest extends TestCase
 
         foreach ($circumstances as $type => $data) {
             yield $type => [
-                'origin' => new DateTime(Instant::of($data[0])),
-                'start' => new DateTime(Instant::of($data[1])),
-                'end' => new DateTime(Instant::of($data[2])),
+                'origin' => new \Tuzex\Ddd\Domain\DateTime(Instant::of($data[0])),
+                'start' => new DateTime(\Tuzex\Ddd\Domain\Instant::of($data[1])),
+                'end' => new DateTime(\Tuzex\Ddd\Domain\Instant::of($data[2])),
                 'result' => $results[$type],
             ];
         }
     }
 
-    private function mockClock(): Clock
+    private function mockClock(): \Tuzex\Ddd\Domain\Clock
     {
         $clock = $this->createMock(Clock::class);
         $clock->expects($this->once())
             ->method('instant')
             ->willReturn(
-                Instant::of(self::PRESENT)
+                \Tuzex\Ddd\Domain\Instant::of(self::PRESENT)
             );
 
         return $clock;

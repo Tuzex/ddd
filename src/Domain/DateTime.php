@@ -2,20 +2,29 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Timing\Domain;
+namespace Tuzex\Ddd\Domain;
 
 use DateTimeImmutable;
 use DateTimeZone;
-use Tuzex\Ddd\Timing\Domain\Period\Seconds;
+use DomainException;
+use Tuzex\Ddd\Domain\DateTime\Date;
+use Tuzex\Ddd\Domain\DateTime\DateTimeInterval;
+use Tuzex\Ddd\Domain\DateTime\Period\Seconds;
+use Tuzex\Ddd\Domain\DateTime\Time;
 
 final class DateTime
 {
     public function __construct(
-        private Instant $instant,
+        public readonly Instant $instant,
     ) {}
 
     public static function by(DateTimeImmutable $dateTime): self
     {
+        $timeZoneOffsetInSeconds = $dateTime->getOffset();
+        if (0 !== $timeZoneOffsetInSeconds) {
+            throw new DomainException(sprintf('Time zone must be UTC (offset = 0 seconds), "%s" seconds given .', $timeZoneOffsetInSeconds));
+        }
+
         return new self(
             Instant::of($dateTime->getTimestamp())
         );
@@ -28,7 +37,7 @@ final class DateTime
 
     public static function sinceThen(self $that): self
     {
-        return new self($that->instant());
+        return new self($that->instant);
     }
 
     public function equals(self $that): bool
@@ -76,11 +85,6 @@ final class DateTime
         return new DateTimeInterval($this, $that);
     }
 
-    public function instant(): Instant
-    {
-        return $this->instant;
-    }
-
     public function date(): Date
     {
         return Date::by($this->asNative());
@@ -98,6 +102,8 @@ final class DateTime
 
     private function asNative(): DateTimeImmutable
     {
-        return new DateTimeImmutable(sprintf('@%s', $this->instant->epochSeconds->value), new DateTimeZone('UTC'));
+        $nativeDateTime = new DateTimeImmutable(sprintf('@%s', $this->instant->epochSeconds->value));
+
+        return $nativeDateTime->setTimezone(new DateTimeZone('UTC'));
     }
 }
