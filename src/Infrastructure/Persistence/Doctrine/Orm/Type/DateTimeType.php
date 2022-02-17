@@ -18,8 +18,7 @@ final class DateTimeType extends DateTimeImmutableType
             return null;
         }
 
-        $dateTimeZone = new DateTimeZone('UTC');
-        $dateTime = new DateTimeImmutable(sprintf('@%s', $value->instant->epochSeconds->value), $dateTimeZone);
+        $dateTime = new DateTimeImmutable(sprintf('@%s', $value->instant->epochSeconds->value));
 
         return $dateTime->format($platform->getDateTimeFormatString());
     }
@@ -31,6 +30,8 @@ final class DateTimeType extends DateTimeImmutableType
             return null;
         }
 
-        return DateTime::by($dateTime);
+        return DateTime::by(
+            $dateTime->setTimezone(new DateTimeZone('UTC'))
+        );
     }
 }
