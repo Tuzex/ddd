@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2022-02-19
+
+### Changed
+
+- **[BC BREAK]** Remove `instant()` method from the `DateTime` value object
+- **[BC BREAK]** Place `Core` model to the root directory
+- Change `instant` class property mutability in the `DateTime` value object
+- Add `UTC` check to the `DateTime` value object
+
+### Removed
+
+- **[BC BREAK]** Remove obsolete `Application` services
+- **[BC BREAK]** Remove obsolete `Domain` attribute
+- **[BC BREAK]** Remove `DomainCommands` collection class
+- **[BC BREAK]** Remove `DomainEvents` collection class
+- **[BC BREAK]** Remove `Finance` domain model
+- **[BC BREAK]** Remove `Measurement` domain model
+
 ## [0.5.0] - 2022-01-31
 
 ### Added
@@ -42,7 +60,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - **[BC BREAK]** Remove `DomainEventBus` implementation based on [`symfony/messenger`](https://github.com/symfony/messenger)
 
-[Unreleased]: https://github.com/Tuzex/ddd/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/Tuzex/ddd/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/Tuzex/ddd/releases/tag/v0.6.0
 [0.5.0]: https://github.com/Tuzex/ddd/releases/tag/v0.5.0
 [0.4.0]: https://github.com/Tuzex/ddd/releases/tag/v0.4.0
 [0.3.1]: https://github.com/Tuzex/ddd/releases/tag/v0.3.1
