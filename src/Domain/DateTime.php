@@ -25,9 +25,7 @@ final class DateTime
             throw new DomainException(sprintf('Time zone must be UTC (offset = 0 seconds), "%s" seconds given .', $timeZoneOffsetInSeconds));
         }
 
-        return new self(
-            Instant::of($dateTime->getTimestamp())
-        );
+        return new self(Instant::of($dateTime->getTimestamp()));
     }
 
     public static function asOf(Clock $clock): self
