@@ -6,6 +6,7 @@ namespace Tuzex\Ddd\Test\Domain;
 
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\DomainEvent;
+use Tuzex\Ddd\Domain\DomainEventOccurrence;
 
 final class DomainEventOccurrenceTest extends TestCase
 {
@@ -15,9 +16,9 @@ final class DomainEventOccurrenceTest extends TestCase
     public function testItCollectsDomainEvents(array $domainEvents): void
     {
         $aggregate = new class() {
-            use \Tuzex\Ddd\Domain\DomainEventOccurrence;
+            use DomainEventOccurrence;
 
-            public function doChange(\Tuzex\Ddd\Domain\DomainEvent ...$domainEvents): void
+            public function doChange(DomainEvent ...$domainEvents): void
             {
                 $this->occur(...$domainEvents);
             }

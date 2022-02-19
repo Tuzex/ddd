@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Tuzex\Ddd\Test\Domain;
 
 use PHPUnit\Framework\TestCase;
+use Tuzex\Ddd\Domain\DomainCommand;
+use Tuzex\Ddd\Domain\DomainCommandAbility;
 
 final class DomainCommandAbilityTest extends TestCase
 {
@@ -14,9 +16,9 @@ final class DomainCommandAbilityTest extends TestCase
     public function testItCollectsCommand(array $domainCommands): void
     {
         $processManager = new class() {
-            use \Tuzex\Ddd\Domain\DomainCommandAbility;
+            use DomainCommandAbility;
 
-            public function doChange(\Tuzex\Ddd\Domain\DomainCommand ...$domainCommands): void
+            public function doChange(DomainCommand ...$domainCommands): void
             {
                 foreach ($domainCommands as $domainCommand) {
                     $this->issue($domainCommand);
@@ -31,7 +33,7 @@ final class DomainCommandAbilityTest extends TestCase
 
     public function provideCommands(): iterable
     {
-        $domainCommand = $this->createMock(\Tuzex\Ddd\Domain\DomainCommand::class);
+        $domainCommand = $this->createMock(DomainCommand::class);
         $testCases = [
             'one' => [
                 $domainCommand,

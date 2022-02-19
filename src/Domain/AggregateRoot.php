@@ -8,5 +8,5 @@ interface AggregateRoot
 {
     public function id(): Identifier;
 
-    public function domainEvents(): DomainEvents;
+    public function domainEvents(): array;
 }

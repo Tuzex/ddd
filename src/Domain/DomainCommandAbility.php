@@ -11,9 +11,9 @@ trait DomainCommandAbility
      */
     private array $commands = [];
 
-    public function domainCommands(): DomainCommands
+    public function domainCommands(): array
     {
-        $commands = new DomainCommands(...$this->commands);
+        $commands = $this->commands;
         $this->commands = [];
 
         return $commands;

@@ -11,9 +11,9 @@ trait DomainEventOccurrence
      */
     private array $domainEvents = [];
 
-    public function domainEvents(): DomainEvents
+    public function domainEvents(): array
     {
-        $domainEvents = new DomainEvents(...$this->domainEvents);
+        $domainEvents = $this->domainEvents;
         $this->domainEvents = [];
 
         return $domainEvents;
