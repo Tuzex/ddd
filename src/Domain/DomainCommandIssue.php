@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tuzex\Ddd\Domain;
 
-trait DomainCommandAbility
+trait DomainCommandIssue
 {
     /**
      * @var array<int|string, DomainCommand>

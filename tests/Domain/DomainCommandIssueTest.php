@@ -6,9 +6,9 @@ namespace Tuzex\Ddd\Test\Domain;
 
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\DomainCommand;
-use Tuzex\Ddd\Domain\DomainCommandAbility;
+use Tuzex\Ddd\Domain\DomainCommandIssue;
 
-final class DomainCommandAbilityTest extends TestCase
+final class DomainCommandIssueTest extends TestCase
 {
     /**
      * @dataProvider provideCommands
@@ -16,7 +16,7 @@ final class DomainCommandAbilityTest extends TestCase
     public function testItCollectsCommand(array $domainCommands): void
     {
         $processManager = new class() {
-            use DomainCommandAbility;
+            use DomainCommandIssue;
 
             public function doChange(DomainCommand ...$domainCommands): void
             {
