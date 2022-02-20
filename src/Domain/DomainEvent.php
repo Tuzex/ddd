@@ -6,5 +6,4 @@ namespace Tuzex\Ddd\Domain;
 
 interface DomainEvent
 {
-    public function occurredOn(): DateTime;
 }
