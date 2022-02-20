@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.1] - 2022-02-20
+
+### Removed
+
+- Remove `id` getter from `AggregateRoot` interface
+- Remove `issuedOn` getter from `DomainCommand` interface
+- Remove `occurredOn` getter from `DomainEvent` interface
+
 ## [0.7.0] - 2022-02-19
 
 ### Added
@@ -71,7 +79,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - **[BC BREAK]** Remove `DomainEventBus` implementation based on [`symfony/messenger`](https://github.com/symfony/messenger)
 
-[Unreleased]: https://github.com/Tuzex/ddd/compare/v0.7.0...HEAD
+[Unreleased]: https://github.com/Tuzex/ddd/compare/v0.7.1...HEAD
+[0.7.1]: https://github.com/Tuzex/ddd/releases/tag/v0.7.1
 [0.7.0]: https://github.com/Tuzex/ddd/releases/tag/v0.7.0
 [0.6.0]: https://github.com/Tuzex/ddd/releases/tag/v0.6.0
 [0.5.0]: https://github.com/Tuzex/ddd/releases/tag/v0.5.0
