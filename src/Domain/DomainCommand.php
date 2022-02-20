@@ -6,5 +6,4 @@ namespace Tuzex\Ddd\Domain;
 
 interface DomainCommand
 {
-    public function issuedOn(): DateTime;
 }
