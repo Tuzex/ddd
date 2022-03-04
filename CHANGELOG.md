@@ -4,9 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.3] - 2022-03-04
+
+### Added
+
+- Implement a specific IDs
+
+### Changed
+
+- Rework the Identifier factory
+
 ## [0.7.2] - 2022-03-03
 
-### Add
+### Added
 
 - Implement an abstract ID
 - Define the interface for the identifier factory
@@ -87,7 +97,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - **[BC BREAK]** Remove `DomainEventBus` implementation based on [`symfony/messenger`](https://github.com/symfony/messenger)
 
-[Unreleased]: https://github.com/Tuzex/ddd/compare/v0.7.2...HEAD
+[Unreleased]: https://github.com/Tuzex/ddd/compare/v0.7.3...HEAD
+[0.7.3]: https://github.com/Tuzex/ddd/releases/tag/v0.7.3
 [0.7.2]: https://github.com/Tuzex/ddd/releases/tag/v0.7.2
 [0.7.1]: https://github.com/Tuzex/ddd/releases/tag/v0.7.1
 [0.7.0]: https://github.com/Tuzex/ddd/releases/tag/v0.7.0
