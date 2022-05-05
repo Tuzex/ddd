@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tuzex\Ddd\Domain;
 
+use DateTimeInterface;
 use Tuzex\Ddd\Domain\DateTime\Period\Seconds;
 
 final class Instant
@@ -17,6 +18,11 @@ final class Instant
         return new self(
             new Seconds($epochSeconds)
         );
+    }
+
+    public static function by(DateTimeInterface $dateTime): self
+    {
+        return self::of((int) $dateTime->format('U'));
     }
 
     public function equals(self $that): bool
