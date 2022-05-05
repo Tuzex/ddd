@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Test\Infrastructure\Persistence\Doctrine\Orm\Type;
+namespace Tuzex\Ddd\Test\Infrastructure\Persistence\Doctrine\Dbal\Type;
 
 use DateTimeImmutable;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\Instant;
-use Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Orm\Type\InstantType;
 
 final class InstantTypeTest extends TestCase
 {
@@ -20,7 +19,7 @@ final class InstantTypeTest extends TestCase
      */
     public function testItConvertsValueObjectToDatabaseValue(?Instant $instant, ?string $result): void
     {
-        $instantType = new InstantType();
+        $instantType = new \Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\InstantType();
         $databaseInstant = $instantType->convertToDatabaseValue($instant, $this->mockPlatform());
 
         $this->assertSame($result, $databaseInstant);
@@ -45,7 +44,7 @@ final class InstantTypeTest extends TestCase
      */
     public function testItConvertsDatabaseValueToValueObject(?DateTimeImmutable $dateTime, ?int $result): void
     {
-        $instantType = new InstantType();
+        $instantType = new \Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\InstantType();
         $instant = $instantType->convertToPHPValue($dateTime, $this->mockPlatform());
 
         $this->assertSame($result, $instant?->epochSeconds->value);

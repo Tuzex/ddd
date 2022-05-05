@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Test\Infrastructure\Persistence\Doctrine\Orm\Type;
+namespace Tuzex\Ddd\Test\Infrastructure\Persistence\Doctrine\Dbal\Type;
 
 use DateTimeImmutable;
 use DateTimeZone;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\DateTime;
-use Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Orm\Type\DateTimeType;
+use Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\DateTime\DateTimeType;
 
 final class DateTimeTypeTest extends TestCase
 {

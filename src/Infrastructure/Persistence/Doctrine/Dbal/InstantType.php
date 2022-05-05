@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Orm\Type;
+namespace Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal;
 
 use DateTimeImmutable;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
