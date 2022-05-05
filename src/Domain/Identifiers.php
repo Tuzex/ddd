@@ -6,5 +6,5 @@ namespace Tuzex\Ddd\Domain;
 
 interface Identifiers
 {
-    public function nextId(): Identifier;
+    public function next(): Identifier;
 }
