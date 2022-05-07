@@ -11,6 +11,7 @@ use Tuzex\Ddd\Domain\Instant;
 
 final class InstantType extends DateTimeImmutableType
 {
+    public const NAME = 'tuzex.instant';
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if (! $value instanceof Instant) {

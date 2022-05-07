@@ -12,6 +12,7 @@ use Tuzex\Ddd\Domain\DateTime;
 
 final class DateTimeType extends DateTimeImmutableType
 {
+    public const NAME = 'tuzex.date_time';
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if (! $value instanceof DateTime) {
