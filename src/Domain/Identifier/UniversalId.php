@@ -12,8 +12,14 @@ class UniversalId extends Id implements Identifier
     final public function __construct(
         public readonly string $value,
     ) {
-        Assert::notEmpty($this->value);
-        Assert::uuid($this->value);
+        Assert::notEmpty(
+            $this->value,
+            sprintf('Value of "%s" must be valid UUID, empty string given.', static::class)
+        );
+        Assert::uuid(
+            $this->value,
+            sprintf('Value of "%s" must be valid UUID, "%s" given', static::class, $this->value)
+        );
     }
 
     public static function from(self $origin): static
