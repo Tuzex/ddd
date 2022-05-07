@@ -4,11 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.7.4] - 2022-03-04
+## [0.8.0] - 2022-05-07
 
 ### Added
 
-- Create a doctrine `Instant` type
+- Add `DateTime` static factory to `Instant`
+- Add `Symfony UID` library to dependencies
+- Implement `UniversalIds`  via the `Symfony UID`
+- Add `Doctrine ORM` as dependency
+- Model abstract `Doctrine ORM` repository for aggregates
+- Add extension methods to `Doctrine` types
+- Add the `UniversalId` doctrine type
+- Define the `UniversalIds` interface
+
+### Changed
+
+- **[BC BREAK]** Fix `Doctrine` type paths
+- **[BC BREAK]** Add a name prefix of existing `Doctrine` types
+- **[BC BREAK]** Change `Identifiers` method name
+- **[BC BREAK]** Rename `Time` methods in `TimeAware` traits
+- Change `UniversalId` value property visibility
+- Use `ATOM` pattern to format the `DateTime`
+- Add messages to `UniversalId` constructor asserts
 
 ## [0.7.3] - 2022-03-04
 
@@ -103,7 +120,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - **[BC BREAK]** Remove `DomainEventBus` implementation based on [`symfony/messenger`](https://github.com/symfony/messenger)
 
-[Unreleased]: https://github.com/Tuzex/ddd/compare/v0.7.4...HEAD
+[Unreleased]: https://github.com/Tuzex/ddd/compare/v0.8.0...HEAD
+[0.8.0]: https://github.com/Tuzex/ddd/releases/tag/v0.8.0
 [0.7.4]: https://github.com/Tuzex/ddd/releases/tag/v0.7.4
 [0.7.3]: https://github.com/Tuzex/ddd/releases/tag/v0.7.3
 [0.7.2]: https://github.com/Tuzex/ddd/releases/tag/v0.7.2
