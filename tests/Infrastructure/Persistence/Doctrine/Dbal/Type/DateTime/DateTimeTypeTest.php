@@ -8,7 +8,7 @@ use DateTimeImmutable;
 use DateTimeZone;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Tuzex\Ddd\Domain\DateTime;
-use Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\DateTime\DateTimeType;
+use Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\Type\DateTime\DateTimeType;
 
 final class DateTimeTypeTest extends TypeTest
 {

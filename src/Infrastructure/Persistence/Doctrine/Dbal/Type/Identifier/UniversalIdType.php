@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\Identifier;
+namespace Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\Type\Identifier;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;

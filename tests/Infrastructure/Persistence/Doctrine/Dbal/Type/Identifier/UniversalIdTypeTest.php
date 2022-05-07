@@ -7,7 +7,7 @@ namespace Tuzex\Ddd\Test\Infrastructure\Persistence\Doctrine\Dbal\Type\Identifie
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Tuzex\Ddd\Domain\Identifier\UniversalId;
-use Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\Identifier\UniversalIdType;
+use Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\Type\Identifier\UniversalIdType;
 use Tuzex\Ddd\Test\Infrastructure\Persistence\Doctrine\Dbal\Type\TypeTest;
 
 final class UniversalIdTypeTest extends TypeTest
@@ -53,7 +53,7 @@ final class UniversalIdTypeTest extends TypeTest
         $universalIdType->convertToPHPValue('non-uuid', $this->mockPlatform());
     }
 
-    protected function getType(): UniversalIdType
+    protected function getType(): \Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\Type\Identifier\UniversalIdType
     {
         return new UniversalIdType();
     }

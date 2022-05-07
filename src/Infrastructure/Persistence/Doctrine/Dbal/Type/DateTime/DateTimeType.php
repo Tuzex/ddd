@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\DateTime;
+namespace Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\Type\DateTime;
 
 use DateTimeImmutable;
 use DateTimeZone;

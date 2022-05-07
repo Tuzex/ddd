@@ -7,7 +7,7 @@ namespace Tuzex\Ddd\Test\Infrastructure\Persistence\Doctrine\Dbal\Type;
 use DateTimeImmutable;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Tuzex\Ddd\Domain\Instant;
-use Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\InstantType;
+use Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\Type\InstantType;
 
 final class InstantTypeTest extends TypeTest
 {
