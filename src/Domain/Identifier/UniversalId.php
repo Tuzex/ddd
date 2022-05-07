@@ -10,7 +10,7 @@ use Webmozart\Assert\Assert;
 class UniversalId extends Id implements Identifier
 {
     final public function __construct(
-        protected string $value,
+        public readonly string $value,
     ) {
         Assert::notEmpty($this->value);
         Assert::uuid($this->value);
