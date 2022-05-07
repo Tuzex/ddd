@@ -7,11 +7,10 @@ namespace Tuzex\Ddd\Test\Infrastructure\Persistence\Doctrine\Dbal\Type;
 use DateTimeImmutable;
 use DateTimeZone;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\DateTime;
 use Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\DateTime\DateTimeType;
 
-final class DateTimeTypeTest extends TestCase
+final class DateTimeTypeTest extends TypeTest
 {
     private const SQL_FORMAT = 'Y-m-d H:i:s';
 
@@ -20,7 +19,7 @@ final class DateTimeTypeTest extends TestCase
      */
     public function testItConvertsValueObjectToDatabaseValue(?DateTime $dateTime, ?string $result): void
     {
-        $dateTimeType = new DateTimeType();
+        $dateTimeType = $this->getType();
         $databaseDateTime = $dateTimeType->convertToDatabaseValue($dateTime, $this->mockPlatform());
 
         $this->assertSame($result, $databaseDateTime);
@@ -47,7 +46,7 @@ final class DateTimeTypeTest extends TestCase
      */
     public function testItConvertsDatabaseValueToValueObject(?DateTimeImmutable $dateTime, ?int $result): void
     {
-        $dateTimeType = new DateTimeType();
+        $dateTimeType = $this->getType();
         $domainDateTime = $dateTimeType->convertToPHPValue($dateTime, $this->mockPlatform());
 
         $this->assertSame($result, $domainDateTime?->instant->epochSeconds->value);
@@ -69,7 +68,17 @@ final class DateTimeTypeTest extends TestCase
         ];
     }
 
-    private function mockPlatform(): AbstractPlatform
+    protected function getType(): DateTimeType
+    {
+        return new DateTimeType();
+    }
+
+    protected function getTypeName(): string
+    {
+        return 'tuzex.date_time';
+    }
+
+    protected function mockPlatform(): AbstractPlatform
     {
         $platform = $this->createMock(AbstractPlatform::class);
         $platform->expects($this->atMost(1))

@@ -6,10 +6,10 @@ namespace Tuzex\Ddd\Test\Infrastructure\Persistence\Doctrine\Dbal\Type;
 
 use DateTimeImmutable;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\Instant;
+use Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\InstantType;
 
-final class InstantTypeTest extends TestCase
+final class InstantTypeTest extends TypeTest
 {
     private const TIMESTAMP = 1646408086;
     private const SQL_DATETIME_FORMAT = 'Y-m-d H:i:s';
@@ -19,7 +19,7 @@ final class InstantTypeTest extends TestCase
      */
     public function testItConvertsValueObjectToDatabaseValue(?Instant $instant, ?string $result): void
     {
-        $instantType = new \Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\InstantType();
+        $instantType = $this->getType();
         $databaseInstant = $instantType->convertToDatabaseValue($instant, $this->mockPlatform());
 
         $this->assertSame($result, $databaseInstant);
@@ -44,7 +44,7 @@ final class InstantTypeTest extends TestCase
      */
     public function testItConvertsDatabaseValueToValueObject(?DateTimeImmutable $dateTime, ?int $result): void
     {
-        $instantType = new \Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\InstantType();
+        $instantType = $this->getType();
         $instant = $instantType->convertToPHPValue($dateTime, $this->mockPlatform());
 
         $this->assertSame($result, $instant?->epochSeconds->value);
@@ -66,7 +66,17 @@ final class InstantTypeTest extends TestCase
         ];
     }
 
-    private function mockPlatform(): AbstractPlatform
+    protected function getType(): InstantType
+    {
+        return new InstantType();
+    }
+
+    protected function getTypeName(): string
+    {
+        return 'tuzex.instant';
+    }
+
+    protected function mockPlatform(): AbstractPlatform
     {
         $platform = $this->createMock(AbstractPlatform::class);
         $platform->expects($this->atMost(1))
