@@ -6,7 +6,6 @@ namespace Tuzex\Ddd\Test\Domain;
 
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\Clock;
-use Tuzex\Ddd\Domain\DateTime;
 use Tuzex\Ddd\Domain\DomainEvent;
 use Tuzex\Ddd\Domain\OccurrenceTimeAware;
 
@@ -19,10 +18,10 @@ final class OccurrenceTimeAwareTest extends TestCase
 
             public function __construct(Clock $clock)
             {
-                $this->occurredOn = DateTime::asOf($clock);
+                $this->occurredAt = $clock->instant();
             }
         };
 
-        $this->assertSame(FakeClock::PRESENT, $domainEvent->occurredOn()->instant->epochSeconds->value);
+        $this->assertSame(FakeClock::PRESENT, $domainEvent->occurredAt()->epochSeconds->value);
     }
 }

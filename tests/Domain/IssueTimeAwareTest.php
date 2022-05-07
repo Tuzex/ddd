@@ -6,7 +6,6 @@ namespace Tuzex\Ddd\Test\Domain;
 
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\Clock;
-use Tuzex\Ddd\Domain\DateTime;
 use Tuzex\Ddd\Domain\DomainCommand;
 use Tuzex\Ddd\Domain\IssueTimeAware;
 
@@ -19,10 +18,10 @@ final class IssueTimeAwareTest extends TestCase
 
             public function __construct(Clock $clock)
             {
-                $this->issuedOn = DateTime::asOf($clock);
+                $this->issuedAt = $clock->instant();
             }
         };
 
-        $this->assertSame(FakeClock::PRESENT, $domainCommand->issuedOn()->instant->epochSeconds->value);
+        $this->assertSame(FakeClock::PRESENT, $domainCommand->issuedAt()->epochSeconds->value);
     }
 }

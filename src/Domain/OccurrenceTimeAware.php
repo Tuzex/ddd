@@ -6,10 +6,10 @@ namespace Tuzex\Ddd\Domain;
 
 trait OccurrenceTimeAware
 {
-    private DateTime $occurredOn;
+    private Instant $occurredAt;
 
-    public function occurredOn(): DateTime
+    public function occurredAt(): Instant
     {
-        return $this->occurredOn;
+        return $this->occurredAt;
     }
 }

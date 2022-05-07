@@ -6,10 +6,10 @@ namespace Tuzex\Ddd\Domain;
 
 trait IssueTimeAware
 {
-    private DateTime $issuedOn;
+    private Instant $issuedAt;
 
-    public function issuedOn(): DateTime
+    public function issuedAt(): Instant
     {
-        return $this->issuedOn;
+        return $this->issuedAt;
     }
 }
