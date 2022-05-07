@@ -95,7 +95,7 @@ final class DateTime
 
     public function iso6801(): string
     {
-        return $this->asNative()->format(DATE_ISO8601);
+        return $this->asNative()->format(DATE_ATOM);
     }
 
     private function asNative(): DateTimeImmutable
