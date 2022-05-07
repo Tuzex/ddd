@@ -12,6 +12,7 @@ use Tuzex\Ddd\Domain\Instant;
 final class InstantType extends DateTimeImmutableType
 {
     public const NAME = 'tuzex.instant';
+
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if (! $value instanceof Instant) {
@@ -31,5 +32,20 @@ final class InstantType extends DateTimeImmutableType
         }
 
         return Instant::of((int) $dateTime->format('U'));
+    }
+
+    public function getName(): string
+    {
+        return self::NAME;
+    }
+
+    public function getMappedDatabaseTypes(AbstractPlatform $platform): array
+    {
+        return [self::NAME];
+    }
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
     }
 }

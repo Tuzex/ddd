@@ -13,6 +13,7 @@ use Tuzex\Ddd\Domain\DateTime;
 final class DateTimeType extends DateTimeImmutableType
 {
     public const NAME = 'tuzex.date_time';
+
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if (! $value instanceof DateTime) {
@@ -34,5 +35,20 @@ final class DateTimeType extends DateTimeImmutableType
         return DateTime::by(
             $dateTime->setTimezone(new DateTimeZone('UTC'))
         );
+    }
+
+    public function getName(): string
+    {
+        return self::NAME;
+    }
+
+    public function getMappedDatabaseTypes(AbstractPlatform $platform): array
+    {
+        return [self::NAME];
+    }
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
     }
 }
