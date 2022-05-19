@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\Type\Identifier;
+namespace Tuzex\Ddd\Infrastructure\Persistence\Doctrine\Dbal\Type\Id;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\GuidType;
-use Tuzex\Ddd\Domain\Identifier\UniversalId;
+use Tuzex\Ddd\Domain\Id\UniversalId;
 
 final class UniversalIdType extends GuidType
 {

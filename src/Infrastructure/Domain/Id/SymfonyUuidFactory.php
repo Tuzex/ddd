@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Infrastructure\Domain\Identifier;
+namespace Tuzex\Ddd\Infrastructure\Domain\Id;
 
 use Symfony\Component\Uid\Uuid;
-use Tuzex\Ddd\Domain\Identifier\UniversalId;
-use Tuzex\Ddd\Domain\Identifier\UniversalIds;
+use Tuzex\Ddd\Domain\Id\UniversalId;
+use Tuzex\Ddd\Domain\Id\UniversalIds;
 
 final class SymfonyUuidFactory implements UniversalIds
 {

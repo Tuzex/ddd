@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Test\Domain\Identifier;
+namespace Tuzex\Ddd\Test\Domain\Id;
 
 use PHPUnit\Framework\TestCase;
-use Tuzex\Ddd\Domain\Identifier\UniversalId;
+use Tuzex\Ddd\Domain\Id\UniversalId;
 use Webmozart\Assert\InvalidArgumentException;
 
 final class UniversalIdTest extends TestCase

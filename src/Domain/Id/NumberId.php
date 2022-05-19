@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\Identifier;
+namespace Tuzex\Ddd\Domain\Id;
 
+use Tuzex\Ddd\Domain\Id;
 use Tuzex\Ddd\Domain\Identifier;
 
 class NumberId extends Id implements Identifier
