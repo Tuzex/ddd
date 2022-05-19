@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Domain\Identifier;
+namespace Tuzex\Ddd\Domain;
 
 use Stringable;
-use Tuzex\Ddd\Domain\Identifier;
 
 abstract class Id implements Identifier, Stringable
 {
