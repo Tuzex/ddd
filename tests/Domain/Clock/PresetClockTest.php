@@ -4,20 +4,22 @@ declare(strict_types=1);
 
 namespace Tuzex\Ddd\Test\Domain\Clock;
 
-use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\Clock\PresetClock;
+use Tuzex\Ddd\Domain\Instant;
 
 final class PresetClockTest extends TestCase
 {
+    private const TIMESTAMP = 1652974976;
+
     public function testItMeasuresTime(): void
     {
-        $timeStamp = time();
-        $dateTime = new DateTimeImmutable('@'.$timeStamp);
+        $clock = new PresetClock(
+            Instant::of(self::TIMESTAMP)
+        );
 
-        $clock = new PresetClock($dateTime);
         $instant = $clock->instant();
 
-        $this->assertSame($timeStamp, $instant->epochSeconds->value);
+        $this->assertSame(self::TIMESTAMP, $instant->epochSeconds->value);
     }
 }
