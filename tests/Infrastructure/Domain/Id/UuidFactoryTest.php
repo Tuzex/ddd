@@ -6,13 +6,16 @@ namespace Tuzex\Ddd\Test\Infrastructure\Domain\Id;
 
 use PHPUnit\Framework\TestCase;
 use Tuzex\Ddd\Domain\Id\UniversalId;
-use Tuzex\Ddd\Infrastructure\Domain\Id\SymfonyUuidFactory;
+use Tuzex\Ddd\Infrastructure\Domain\Id\UniversalIdFactory;
+use Tuzex\Ddd\Infrastructure\Support\Symfony\Uuid\UuidGenerator\UuidV4Generator;
 
-final class SymfonyUuidFactoryTest extends TestCase
+final class UuidFactoryTest extends TestCase
 {
     public function testItReturnsValidUuidString(): void
     {
-        $uuidFactory = new SymfonyUuidFactory();
+        $uuidFactory = new UniversalIdFactory(
+            new UuidV4Generator()
+        );
 
         $this->assertInstanceOf(UniversalId::class, $uuidFactory->next());
     }
