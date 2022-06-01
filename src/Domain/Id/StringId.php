@@ -11,7 +11,7 @@ use Webmozart\Assert\Assert;
 class StringId extends Id implements Identifier
 {
     final public function __construct(
-        protected string $value,
+        public readonly string $value,
     ) {
         Assert::notEmpty($this->value);
         Assert::maxLength($this->value, 255);

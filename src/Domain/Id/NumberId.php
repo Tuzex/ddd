@@ -6,12 +6,14 @@ namespace Tuzex\Ddd\Domain\Id;
 
 use Tuzex\Ddd\Domain\Id;
 use Tuzex\Ddd\Domain\Identifier;
+use Webmozart\Assert\Assert;
 
 class NumberId extends Id implements Identifier
 {
     final public function __construct(
-        protected int $value,
+        public readonly int $value,
     ) {
+        Assert::greaterThan($this->value, 0);
     }
 
     public static function from(self $origin): static
