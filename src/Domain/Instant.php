@@ -22,7 +22,7 @@ final class Instant
 
     public static function by(DateTimeInterface $dateTime): self
     {
-        return self::of((int) $dateTime->format('U'));
+        return self::of($dateTime->getTimestamp());
     }
 
     public function equals(self $that): bool
