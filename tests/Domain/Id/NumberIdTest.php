@@ -38,37 +38,6 @@ final class NumberIdTest extends TestCase
         $this->assertSame(self::ID, $validId->value());
     }
 
-    public function testItIsStringable(): void
-    {
-        $id = new NumberId(self::ID);
-
-        $this->assertSame(sprintf('%s', self::ID), (string) $id);
-    }
-
-    /**
-     * @dataProvider provideIdsForEquality
-     */
-    public function testItEquality(NumberId $first, NumberId $second, bool $expected): void
-    {
-        $this->assertSame($expected, $first->equals($second));
-    }
-
-    public function provideIdsForEquality(): array
-    {
-        return [
-            'equal' => [
-                'first' => new NumberId(self::ID),
-                'second' => new NumberId(self::ID),
-                'expected' => true,
-            ],
-            'inequality' => [
-                'first' => new NumberId(self::ID),
-                'second' => new NumberId(2),
-                'expected' => false,
-            ],
-        ];
-    }
-
     public function testItCreatesFromAnother(): void
     {
         $originId = new NumberId(self::ID);
