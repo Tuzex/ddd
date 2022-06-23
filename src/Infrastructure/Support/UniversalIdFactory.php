@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Infrastructure\Domain\Id;
+namespace Tuzex\Ddd\Infrastructure\Support;
 
 use Tuzex\Ddd\Domain\Id\UniversalId;
 use Tuzex\Ddd\Domain\Id\UniversalIds;

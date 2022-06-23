@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tuzex\Ddd\Infrastructure\Domain\Clock;
+namespace Tuzex\Ddd\Infrastructure\Support;
 
 use Tuzex\Ddd\Domain\Clock;
 use Tuzex\Ddd\Domain\Instant;

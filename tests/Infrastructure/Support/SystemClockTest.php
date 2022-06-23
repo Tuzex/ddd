@@ -6,7 +6,7 @@ namespace Tuzex\Ddd\Test\Infrastructure\Domain\Clock;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
-use Tuzex\Ddd\Infrastructure\Domain\Clock\SystemClock;
+use Tuzex\Ddd\Infrastructure\Support\SystemClock;
 use Tuzex\Timekeeper\TimeService;
 
 final class SystemClockTest extends TestCase
